@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-#recIconCtn {
+/* #recIconCtn {
   position: absolute;
   left: 0;
   top: 0;
@@ -17,9 +17,9 @@
                         'area5 area6'
                         'area7 areaQ';
   grid-gap: 1rem;
-}
+} */
 
-#area1 {
+/* #area1 {
   grid-area: area1
 }
 
@@ -44,4 +44,4 @@
 }
 #areaQ {
   grid-area: areaQ
-}
+} */

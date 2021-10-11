@@ -1,4 +1,11 @@
 /* ./src/index.css */
+
+/* -------- custom color css variables ------- */
+
+:root {
+  
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
