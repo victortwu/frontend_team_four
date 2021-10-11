@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+}
+
+#recIconCtn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas: 'area1 area2'
+                        'area3 area4'
+                        'area5 area6'
+                        'area7 areaQ';
+  grid-gap: 1rem;
+}
+
+#area1 {
+  grid-area: area1
+}
+
+#area2 {
+  grid-area: area2
+}
+
+#area3 {
+  grid-area: area3
+}
+#area4 {
+  grid-area: area4
+}
+#area5 {
+  grid-area: area5
+}
+#area6 {
+  grid-area: area6
+}
+#area7 {
+  grid-area: area7
+}
+#areaQ {
+  grid-area: areaQ
+}
