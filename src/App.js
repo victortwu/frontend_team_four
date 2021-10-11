@@ -29,9 +29,11 @@ function App() {
     }, [])
 
   return (
-    <div className="App">
-      <RecycleSymbols recTypeData={recTypeData}/>
-    </div>
+    <main className="App">
+      <div className='h-full w-full bg-poop'>
+        <RecycleSymbols recTypeData={recTypeData}/>
+      </div>
+    </main>
   );
 }
 

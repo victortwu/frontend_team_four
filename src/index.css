@@ -3,7 +3,10 @@
 /* -------- custom color css variables ------- */
 
 :root {
-  
+  --colorOne: #2d3142;
+  --colorTwo: #4f5d75;
+  --colorThree: #bfc0c0;
+  --colorFour: #ffffff;
 }
 
 @tailwind base;
