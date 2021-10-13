@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     // to demo and test custom colors
     colors: {
-      poop: 'var(--colorOne)',
-      dodo: 'var(--colorTwo)',
-      peepee: 'var(--colorThree)',
-      foobar: 'var(--colorFour)'
+      cl1: 'var(--colorOne)',
+      cl2: 'var(--colorTwo)',
+      cl3: 'var(--colorThree)',
+      cl4: 'var(--colorFour)'
     },
     extend: {
 

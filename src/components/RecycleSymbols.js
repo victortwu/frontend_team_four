@@ -1,5 +1,10 @@
 import React from 'react'
 
+function RecycleSymbols() {
+  return (
+    <div>
+      {/* import React from 'react'
+
 const RecycleSymbols = (props) => {
 console.log(props.recTypeData)
 
@@ -55,4 +60,10 @@ const gridPosition = {
   )
 }
 
+export default RecycleSymbols */}
+    </div>
+  )
+}
+
 export default RecycleSymbols
+
