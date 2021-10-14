@@ -7,7 +7,7 @@ import NavBar from "./components/Navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Contact from './components/Contact';
 import WebCam from './components/WebCam';
-
+import Scanner from './components/Scanner'
 
 
 
@@ -37,6 +37,7 @@ function App() {
 
   return (
     <main className='App bg-cl1 '>
+      <Scanner />
       <BrowserRouter>
         <NavBar />
         <Switch>
@@ -49,6 +50,7 @@ function App() {
       <div className='text-cl3 bg-cl1'>
         <RecycleSymbols recTypeData={recTypeData} />
       </div>
+
     </main>
   );
 }
