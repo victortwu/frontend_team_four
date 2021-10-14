@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css';
-//import WebCam from './components/WebCam'
 import RecycleSymbols from './components/RecycleSymbols'
 import NavBar from "./components/Navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Contact from './components/Contact';
-import WebCam from './components/WebCam';
 import Scanner from './components/Scanner'
 
 

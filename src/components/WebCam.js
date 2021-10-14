@@ -1,3 +1,5 @@
+// DEPRECATED DO NOT USE
+
 import React from 'react'
 
 const WebCam = () => {
