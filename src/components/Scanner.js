@@ -1,11 +1,10 @@
 import React, { useState, useRef, useCallback } from 'react'
 import Webcam from 'react-webcam'
-
+import axios from 'axios'
 
 const Scanner = () => {
 
   const [scanData, setScanData] = useState('')
-  const [pic, setPic] = useState('') // won't need this, just for visual feedback
 
   const webCamRef = useRef(null)
 
@@ -21,59 +20,76 @@ const Scanner = () => {
       }
       const file = new File([u8arr], filename, {type:mime})
       setScanData(file)
+
+      let formData = new FormData()
+      formData.append("imageFile", file, "file")
+      console.log(file);
+      axios.post('http://localhost:5000/scan', formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Apikey": process.env.REACT_APP_BCODEAPIKEY
+        },
+      })
+      .then(res=> {
+        console.log(res)
+      })
+      .catch(err => {console.error(err.message)})
+
   }
 
 
   const scan = useCallback(
     () => {
       const imgSrc = webCamRef.current.getScreenshot()
-      setPic(imgSrc) // won't need this setPic(), just for visual feedback
-      dataURLtoFile(imgSrc, 'barcode.png')
+      dataURLtoFile(imgSrc, 'barcode.jpg')
+
     },
     [webCamRef]
   )
 
-
-  const styleForParent = {
-    position: 'relative',
-    height: '25rem',
-  }
-
-  const styleForChild = {
+// CSS
+  const styleForOverlay = {
     postion: 'absolute',
     left: '0',
     top: '0',
     right: '0',
     bottom: '0',
-    zIndex: '1000' // <--- NOT COOPERATING!!
+    zIndex: '2'
   }
 
-  console.log(scanData)
+  const webcamWrap = {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    zIndex: '1'
+  }
+
+  const videoElementStyle = {
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    left: '0',
+    bottom: '0',
+    borderRadius: '.5rem',
+    zIndex: '-1'
+  }
+
+
 
 return(
-    <>
-        <div style={styleForParent} className='m-5'>
-
-            <div style={styleForChild}>
-              <h1>Z-index not working</h1>
+        <div style={{position: 'relative', height: '25rem'}} className='m-5'>
+            <div style={webcamWrap}>
+                <Webcam
+                    style={videoElementStyle}
+                    ref={webCamRef}
+                    screenshotFormat='image/jpeg'
+                />
+                <div style={styleForOverlay}>
+                    <button className='bg-gray-600 text-gray-200 m-5 p-2 rounded-sm' onClick={scan}>scan</button>
+                </div>
             </div>
-
-            <Webcam
-                style={{position: 'absolute', top: '0', zIndex: '0'}}
-                ref={webCamRef}
-                screenshotFormat='image/jpeg'
-            />
-
         </div>
-
-        <button className='bg-gray-600 text-gray-200 m-5 p-2 rounded-sm' onClick={scan}>scan</button>
-
-        {
-          pic && (<img src={pic} />)
-        }
-
-    </>
-  )
+      )
 }
 
 export default Scanner
