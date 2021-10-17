@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css';
 import RecycleSymbols from './components/RecycleSymbols'
-import NavBar from "./components/Navbar";
+//import NavBar from "./components/Navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Contact from './components/Contact';
+import Home from './components/Home'
 import Scanner from './components/Scanner'
-
+import Map from './components/Map'
+import Navigation from './components/Navigation'
 
 
 let appBaseURL = ''
@@ -34,22 +35,41 @@ function App() {
   }, [])
 
   return (
-    <main className='App bg-cl1 '>
-      <Scanner />
-      <BrowserRouter>
-        <NavBar />
-        <Switch>
-          <Route component={RecycleSymbols} path='/' />
-          <Route component={Contact} path='/' />
-          <Route component={WebCam} path='/' />
+    <BrowserRouter>
+    <main className='App bg-cl1'>
+      <Navigation/>
+
+      <Switch>
+            <Route exact path='/'>
+              <div className='mainWrapper'>
+                <Home/>
+
+              </div>
+            </Route>
+
+            <Route exact path='/scanner'>
+              <div className='mainWrapper'>
+              <Scanner/>
+              </div>
+            </Route>
+
+            <Route exact path='/map'>
+              <div className='mainWrapper'>
+                <Map/>
+              </div>
+            </Route>
+
+            <Route exact path='/materials'>
+              <div className='mainWrapper'>
+                <RecycleSymbols recTypeData={recTypeData}/>
+              </div>
+            </Route>
+
         </Switch>
-        {/* <WebCam> camera</WebCam> */}
-      </BrowserRouter>
-      <div className='text-cl3 bg-cl1'>
-        <RecycleSymbols recTypeData={recTypeData} />
-      </div>
+
 
     </main>
+    </BrowserRouter>
   );
 }
 

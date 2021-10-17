@@ -1,9 +1,5 @@
 import React from 'react'
 
-function RecycleSymbols() {
-  return (
-    <div>
-      {/* import React from 'react'
 
 const RecycleSymbols = (props) => {
 console.log(props.recTypeData)
@@ -14,7 +10,7 @@ console.log(props.recTypeData)
 const gridPosition = {
   position: 'absolute',
   left: '0',
-  top: '0',
+  top: '8rem',
   right: '0',
   bottom: '0',
   padding: '1rem',
@@ -31,7 +27,7 @@ const gridPosition = {
 }
 
   return(
-    <div className='container absolute top-10 right-20 w-80 h-5/6 bg-foobar rounded-md shadow-lg z-10'>
+    <div className='h-4/6 bg-cl1 rounded-md shadow-lg z-10'>
       <div style={gridPosition}>
 
         {
@@ -41,14 +37,14 @@ const gridPosition = {
                       key={thing._id}
                       id={gridSpot}
                       style={{gridArea: gridSpot}}
-                      className='w-full h-full bg-peepee text-dodo text-xl rounded-md shadow-sm flex justify-center items-center'
+                      className='w-full h-full bg-cl2 text-cl3 text-xl rounded-md shadow-sm flex justify-center items-center'
                       >
                       {thing.recycleNumber}
                     </div>
           })
         }
 
-        <div className='w-full h-full bg-peepee text-dodo text-xl rounded-md shadow-sm flex justify-center items-center'>
+        <div className='w-full h-full bg-cl2 text-cl3 text-xl rounded-md shadow-sm flex justify-center items-center'>
           ?
         </div>
 
@@ -60,10 +56,4 @@ const gridPosition = {
   )
 }
 
-export default RecycleSymbols */}
-    </div>
-  )
-}
-
 export default RecycleSymbols
-
