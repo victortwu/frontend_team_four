@@ -1,13 +1,14 @@
 import React, { useState, useRef, useCallback } from 'react'
 import Webcam from 'react-webcam'
 import ManualBarcodeSearch from './ManualBarcodeSearch'
+import ShowScanned from './ShowScanned'
 import axios from 'axios'
 
 const Scanner = () => {
 
   const [scanData, setScanData] = useState('')
   const [manualSearch, setManualSearch] = useState(false)
-
+  const [showProductPage, setShowProductPage] = useState(false)
 
   const webCamRef = useRef(null)
 
@@ -33,18 +34,29 @@ const Scanner = () => {
       setScanData(file)
 
       let formData = new FormData()
-      formData.append("imageFile", file, "file")
+      formData.append("imageFile", file, "barcode.jpg")
       console.log(file);
-      axios.post('http://localhost:5000/scan', formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Apikey": process.env.REACT_APP_BCODEAPIKEY
-        },
-      })
-      .then(res=> {
-        console.log(res)
-      })
-      .catch(err => {console.error(err.message)})
+
+      for (const value of formData.values()) {
+        console.log(value)
+      }
+
+
+
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = false;
+
+      xhr.addEventListener("readystatechange", function() {
+           if(this.readyState === 4) {
+                console.log(this.responseText);
+           }
+      });
+
+      xhr.open("POST", "https://api.cloudmersive.com/barcode/scan/image");
+      xhr.setRequestHeader("Content-Type", "multipart/form-data");
+      xhr.setRequestHeader("Apikey", process.env.REACT_APP_BCODEAPIKEY);
+      console.log('Line 66!!')
+      xhr.send(formData);
 
   }
 
@@ -57,6 +69,11 @@ const Scanner = () => {
     },
     [webCamRef]
   )
+
+  const getProduct = () => {
+    console.log('Clicked')
+
+  }
 
 // CSS
   const styleForOverlay = {
@@ -93,7 +110,8 @@ const Scanner = () => {
 
   const videoElementStyle = {
     position: 'absolute',
-    height: '100vh',
+    height: '100%',
+    width: '100%',
     top: '0',
     right: '0',
     left: '0',
@@ -128,8 +146,12 @@ return(
                     {
                       manualSearch ? ''
                       :   <button style={{position: 'absolute', bottom: '20%', left: '50%', transform: 'translateX(-50%, -50%)'}}
-                            onClick={scan}>
-                            scan
+                            onClick={()=> {
+                              scan()
+                              getProduct()
+                            }
+                          }>
+                            SCAN
                           </button>
                     }
 
@@ -140,3 +162,18 @@ return(
 }
 
 export default Scanner
+
+// this is to use barcode api in node backend
+
+// axios.post('http://localhost:5000/scan', formData, {
+//   headers: {
+//     "Content-Type": "multipart/form-data",
+//     "Apikey": process.env.REACT_APP_BCODEAPIKEY
+//   },
+// })
+// .then(res=> {
+//   console.log(res)
+// })
+// .catch(err => {console.error(err.message)})
+
+// this is the SDK code snippet for frontend
