@@ -24,7 +24,7 @@ const Scanner = () => {
 
   // credit:
   // https://stackoverflow.com/questions/16968945/convert-base64-png-data-to-javascript-file-objects/16972036
-  const dataURLtoFile = (dataurl, filename) => {
+  const dataURLtoFile = async(dataurl, filename) => {
       let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
           bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n)
       while(n--){
@@ -34,29 +34,35 @@ const Scanner = () => {
       setScanData(file)
 
       let formData = new FormData()
-      formData.append("imageFile", file, "barcode.jpg")
+      formData.append("imageFile", file, "file")
       console.log(file);
 
       for (const value of formData.values()) {
         console.log(value)
       }
 
+      try {
+        let req = await axios.request({
+          method: 'POST',
+          url: 'https://api.cloudmersive.com/barcode/scan/image',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            "Apikey": process.env.REACT_APP_BCODEAPIKEY
+          },
+          data: formData
+        })
+
+        console.log(req.data);
+
+        //Do whatever you need to with the response data here
+
+}
+catch(error) {
+        console.log(error);
+}
 
 
-      var xhr = new XMLHttpRequest();
-      xhr.withCredentials = false;
 
-      xhr.addEventListener("readystatechange", function() {
-           if(this.readyState === 4) {
-                console.log(this.responseText);
-           }
-      });
-
-      xhr.open("POST", "https://api.cloudmersive.com/barcode/scan/image");
-      xhr.setRequestHeader("Content-Type", "multipart/form-data");
-      xhr.setRequestHeader("Apikey", process.env.REACT_APP_BCODEAPIKEY);
-      console.log('Line 66!!')
-      xhr.send(formData);
 
   }
 
@@ -177,3 +183,19 @@ export default Scanner
 // .catch(err => {console.error(err.message)})
 
 // this is the SDK code snippet for frontend
+
+
+// var xhr = new XMLHttpRequest();
+// xhr.withCredentials = false;
+//
+// xhr.addEventListener("readystatechange", function() {
+//      if(this.readyState === 4) {
+//           console.log(this.responseText);
+//      }
+// });
+//
+// xhr.open("POST", "https://api.cloudmersive.com/barcode/scan/image");
+// xhr.setRequestHeader("Content-Type", "multipart/form-data");
+// xhr.setRequestHeader("Apikey", process.env.REACT_APP_BCODEAPIKEY);
+// console.log('Line 66!!')
+// xhr.send(formData);
