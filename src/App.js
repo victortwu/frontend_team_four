@@ -34,41 +34,44 @@ function App() {
       .catch(err => { console.error(err.message) })
   }, [])
 
+
   return (
     <BrowserRouter>
-    <main className='App bg-cl1'>
-      <Navigation/>
+
+      <main className='App bg-cl1'>
+
+        <Navigation/>
 
       <Switch>
-            <Route exact path='/'>
-              <div className='mainWrapper'>
-                <Home/>
 
-              </div>
+            <Route exact path='/'>
+                <div className='mainWrapper'>
+                    <Home/>
+                </div>
             </Route>
 
             <Route exact path='/scanner'>
-              <div className='mainWrapper'>
-              <Scanner/>
-              </div>
+                <div className='mainWrapper'>
+                    <Scanner/>
+                </div>
             </Route>
 
             <Route exact path='/map'>
-              <div className='mainWrapper'>
-                <Map/>
-              </div>
+                <div className='mainWrapper'>
+                    <Map/>
+                </div>
             </Route>
 
             <Route exact path='/materials'>
-              <div className='mainWrapper'>
-                <RecycleSymbols recTypeData={recTypeData}/>
-              </div>
+                <div className='mainWrapper'>
+                    <RecycleSymbols recTypeData={recTypeData}/>
+                </div>
             </Route>
 
         </Switch>
 
+        </main>
 
-    </main>
     </BrowserRouter>
   );
 }

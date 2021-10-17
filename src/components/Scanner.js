@@ -1,12 +1,23 @@
 import React, { useState, useRef, useCallback } from 'react'
 import Webcam from 'react-webcam'
+import ManualBarcodeSearch from './ManualBarcodeSearch'
 import axios from 'axios'
 
 const Scanner = () => {
 
   const [scanData, setScanData] = useState('')
+  const [manualSearch, setManualSearch] = useState(false)
+
 
   const webCamRef = useRef(null)
+
+  const openKeypad = () => {
+    setManualSearch(true)
+  }
+
+  const closeKeypad = () => {
+    setManualSearch(false)
+  }
 
 
 
@@ -50,11 +61,27 @@ const Scanner = () => {
 // CSS
   const styleForOverlay = {
     postion: 'absolute',
+    height: '100vh',
     left: '0',
     top: '0',
     right: '0',
     bottom: '0',
     zIndex: '2'
+  }
+
+  const overlayBtns = {
+    marginTop: '15%',
+    marginLeft: '15%',
+    marginRight: '15%',
+    display: 'flex',
+    justifyContent: 'space-around'
+  }
+
+  const iconBtns = {
+    width: '10vw',
+    height: '10vw',
+    border: 'solid 1px white',
+    borderRadius: '.5rem'
   }
 
   const webcamWrap = {
@@ -66,6 +93,7 @@ const Scanner = () => {
 
   const videoElementStyle = {
     position: 'absolute',
+    height: '100vh',
     top: '0',
     right: '0',
     left: '0',
@@ -77,15 +105,34 @@ const Scanner = () => {
 
 
 return(
-        <div style={{position: 'relative', height: '25rem'}} className='m-5'>
+        <div style={{position: 'relative', height: '100%'}} className='m-5'>
             <div style={webcamWrap}>
                 <Webcam
                     style={videoElementStyle}
+
                     ref={webCamRef}
                     screenshotFormat='image/jpeg'
                 />
                 <div style={styleForOverlay}>
-                    <button className='bg-gray-600 text-gray-200 m-5 p-2 rounded-sm' onClick={scan}>scan</button>
+
+                    {
+                      manualSearch ? <ManualBarcodeSearch closeKeypad={closeKeypad}/>
+
+                      :   <div style={overlayBtns}>
+                              <button onClick={openKeypad} style={iconBtns}>S</button>
+                              <button style={iconBtns}>?</button>
+                              <button style={iconBtns}>?</button>
+                          </div>
+                    }
+
+                    {
+                      manualSearch ? ''
+                      :   <button style={{position: 'absolute', bottom: '20%', left: '50%', transform: 'translateX(-50%, -50%)'}}
+                            onClick={scan}>
+                            scan
+                          </button>
+                    }
+
                 </div>
             </div>
         </div>

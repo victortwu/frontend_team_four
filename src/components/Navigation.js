@@ -12,7 +12,7 @@ const Navigation =()=> {
   }
 
   const toggleDropDown =()=> {
-    dropLinks ? setDropLinks(false) : setDropLinks(true)
+    setDropLinks(!dropLinks)
   }
 
   const toggleNavClass = dropLinks ? 'dropMenu' : 'hideMenu'
@@ -25,7 +25,7 @@ const Navigation =()=> {
   return(
     <nav className='navBar'>
     <Link to='/'>
-        <h1 className='appLogo'>greenScan</h1>
+        <h1 className='appLogo mt-5'>Logo</h1>
     </Link>
 
 
