@@ -9,6 +9,11 @@ const Scanner = () => {
   const [scanData, setScanData] = useState('')
   const [manualSearch, setManualSearch] = useState(false)
   const [showProductPage, setShowProductPage] = useState(false)
+  const [response, setResponse] = useState(null) // this is for testing barcodescanner api call
+  // useState initialized with testing code
+  const [barcodeString, setBarcodeString] = useState('0111222333446')
+  const [productData, setProductData] = useState({})
+
 
   const webCamRef = useRef(null)
 
@@ -20,7 +25,9 @@ const Scanner = () => {
     setManualSearch(false)
   }
 
-
+  const closePrPg = () => {
+    setShowProductPage(false)
+  }
 
   // credit:
   // https://stackoverflow.com/questions/16968945/convert-base64-png-data-to-javascript-file-objects/16972036
@@ -53,8 +60,9 @@ const Scanner = () => {
         })
 
         console.log(req.data);
+        setResponse(req.data.Successful) //just to test
+        // barcodeString gets set HERE
 
-        //Do whatever you need to with the response data here
 
       }
       catch(error) {
@@ -76,17 +84,20 @@ const Scanner = () => {
 
   const getProduct = () => {
     console.log('Clicked')
-
+    setShowProductPage(true)
+    // upc test call, NOT from Cloudmersive
+    axios.get(`http://localhost:5000/upc/${barcodeString}`)
+      .then(res => {
+        setProductData(res.data)
+      })
+      .catch(err => {console.error(err)})
   }
 
 // CSS
-  const styleForOverlay = {
+  const positionForOverlay = {
     postion: 'absolute',
     height: '100vh',
-    left: '0',
-    top: '0',
-    right: '0',
-    bottom: '0',
+    left: '0', top: '0', right: '0', bottom: '0',
     zIndex: '2'
   }
 
@@ -116,10 +127,7 @@ const Scanner = () => {
     position: 'absolute',
     height: '100%',
     width: '100%',
-    top: '0',
-    right: '0',
-    left: '0',
-    bottom: '0',
+    top: '0', right: '0', left: '0', bottom: '0',
     borderRadius: '.5rem',
     zIndex: '-1'
   }
@@ -135,31 +143,45 @@ return(
                     ref={webCamRef}
                     screenshotFormat='image/jpeg'
                 />
-                <div style={styleForOverlay}>
 
-                    {
-                      manualSearch ? <ManualBarcodeSearch closeKeypad={closeKeypad}/>
+                {
+                  showProductPage ? <div style={positionForOverlay}>
+                                        <ShowScanned
+                                            response={response} closePrPg={closePrPg}
+                                            productData={productData}
+                                        />
+                                    </div>
 
-                      :   <div style={overlayBtns}>
-                              <button onClick={openKeypad} style={iconBtns}>S</button>
-                              <button style={iconBtns}>?</button>
-                              <button style={iconBtns}>?</button>
-                          </div>
-                    }
+                  :     <div style={positionForOverlay}>
 
-                    {
-                      manualSearch ? ''
-                      :   <button style={{position: 'absolute', bottom: '20%', left: '50%', transform: 'translateX(-50%, -50%)'}}
-                            onClick={()=> {
-                              scan()
-                              getProduct()
-                            }
-                          }>
-                            SCAN
-                          </button>
-                    }
+                          {
+                            manualSearch ? <ManualBarcodeSearch closeKeypad={closeKeypad}/>
 
-                </div>
+                            :   <div style={overlayBtns}>
+                                    <button onClick={openKeypad} style={iconBtns}>S</button>
+                                    <button style={iconBtns}>?</button>
+                                    <button style={iconBtns}>?</button>
+                                </div>
+                          }
+
+                          {
+                            manualSearch ? ''
+                            :   <button style={{position: 'absolute', bottom: '20%', left: '50%', transform: 'translateX(-50%, -50%)'}}
+                                  onClick={()=> {
+                                    scan()
+                                    getProduct()
+                                  }
+                                }>
+                                  SCAN
+                                </button>
+                          }
+
+                      </div>
+                }
+
+
+
+
             </div>
         </div>
       )
