@@ -40,7 +40,7 @@ const Scanner = () => {
       for (const value of formData.values()) {
         console.log(value)
       }
-
+      // credit: help from Daniel Edminster
       try {
         let req = await axios.request({
           method: 'POST',
@@ -56,15 +56,13 @@ const Scanner = () => {
 
         //Do whatever you need to with the response data here
 
-}
-catch(error) {
-        console.log(error);
-}
+      }
+      catch(error) {
+              console.log(error);
+      }
 
+    }
 
-
-
-  }
 
 
   const scan = useCallback(
@@ -168,34 +166,3 @@ return(
 }
 
 export default Scanner
-
-// this is to use barcode api in node backend
-
-// axios.post('http://localhost:5000/scan', formData, {
-//   headers: {
-//     "Content-Type": "multipart/form-data",
-//     "Apikey": process.env.REACT_APP_BCODEAPIKEY
-//   },
-// })
-// .then(res=> {
-//   console.log(res)
-// })
-// .catch(err => {console.error(err.message)})
-
-// this is the SDK code snippet for frontend
-
-
-// var xhr = new XMLHttpRequest();
-// xhr.withCredentials = false;
-//
-// xhr.addEventListener("readystatechange", function() {
-//      if(this.readyState === 4) {
-//           console.log(this.responseText);
-//      }
-// });
-//
-// xhr.open("POST", "https://api.cloudmersive.com/barcode/scan/image");
-// xhr.setRequestHeader("Content-Type", "multipart/form-data");
-// xhr.setRequestHeader("Apikey", process.env.REACT_APP_BCODEAPIKEY);
-// console.log('Line 66!!')
-// xhr.send(formData);
