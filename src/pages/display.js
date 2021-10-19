@@ -15,6 +15,8 @@ const Display = ()=>{
         if (responseData['num_results']==0){
             history.push('/')
         }
+        const materials = responseData['result'][`${upc}`]['materials']
+        console.log(materials)
     }
 
 
