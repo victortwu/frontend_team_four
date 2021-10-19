@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useParams, useHistory } from 'react-router'
-
+import { useSelector, useDispatch } from 'react-redux';
 
 const Display = ()=>{
 
-    const urlParam = useParams();
-    const upc = urlParam['upc']
     const history = useHistory()
+    const upc = useSelector((state)=>state.materialsInfo.upc)
+    
 
     const getUpcInfo =async()=>{
         const response = await fetch (`http://localhost:5000/upc/${upc}`)
@@ -14,8 +14,9 @@ const Display = ()=>{
         console.log(responseData)
         if (responseData['num_results']==0){
             history.push('/')
+        }else{
+            const materials = responseData['result'][`${upc}`]['materials'] 
         }
-        const materials = responseData['result'][`${upc}`]['materials']
     }
 
 

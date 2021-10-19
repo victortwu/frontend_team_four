@@ -1,20 +1,24 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router'
+import { useSelector, useDispatch } from 'react-redux'
+import { assignUPC } from '../reduxToolkit/materialsSlice'
 
 const Search = ()=> {
 
     let history = useHistory()
+    const dispatch = useDispatch()
 
-    const [upc, setUpc] = useState()
+    // const [upc, setUpc] = useState()
 
     const handleChange = (e) =>{
         e.preventDefault();
-        setUpc(e.target.value)
+        // setUpc(e.target.value)
+        dispatch(assignUPC(e.target.value))
     }
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        history.push(`/display/${upc}`)
+        history.push(`/display`)
     }
 
     return (
