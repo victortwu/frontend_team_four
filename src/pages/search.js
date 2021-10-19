@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useHistory } from 'react-router'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { assignUPC } from '../reduxToolkit/materialsSlice'
 import { assignLatitude, assignLongitude } from '../reduxToolkit/locationSlice'
 
