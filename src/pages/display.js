@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { useParams, useHistory } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux';
+import { assignMaterials } from '../reduxToolkit/materialsSlice';
 
 const Display = ()=>{
 
     const history = useHistory()
     const upc = useSelector((state)=>state.materialsInfo.upc)
+    const dispatch = useDispatch
     
 
     const getUpcInfo =async()=>{
@@ -15,7 +17,7 @@ const Display = ()=>{
         if (responseData['num_results']==0){
             history.push('/')
         }else{
-            const materials = responseData['result'][`${upc}`]['materials'] 
+            dispatch(assignMaterials(responseData['result'][`${upc}`]['materials']))
         }
     }
 

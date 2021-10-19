@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useHistory } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { assignUPC } from '../reduxToolkit/materialsSlice'
+import { assignLatitude, assignLongitude } from '../reduxToolkit/locationSlice'
 
 const Search = ()=> {
 
@@ -15,6 +16,13 @@ const Search = ()=> {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position)=>{
+                console.log(position.coords)
+                dispatch(assignLatitude(position.coords.latitude))
+                dispatch(assignLongitude(position.coords.longitude))
+            })
+        }
         history.push(`/display`)
     }
 
