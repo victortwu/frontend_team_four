@@ -74,7 +74,7 @@ function App() {
                     <Search/>
                 </div>
             </Route>
-            <Route exact path='/display'>
+            <Route exact path='/display/:upc'>
                 <div className='mainWrapper'>
                     <Display/>
                 </div>
