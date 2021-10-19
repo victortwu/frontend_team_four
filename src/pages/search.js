@@ -8,11 +8,8 @@ const Search = ()=> {
     let history = useHistory()
     const dispatch = useDispatch()
 
-    // const [upc, setUpc] = useState()
-
     const handleChange = (e) =>{
         e.preventDefault();
-        // setUpc(e.target.value)
         dispatch(assignUPC(e.target.value))
     }
 
