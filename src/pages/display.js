@@ -16,7 +16,6 @@ const Display = ()=>{
             history.push('/')
         }
         const materials = responseData['result'][`${upc}`]['materials']
-        console.log(materials)
     }
 
 
