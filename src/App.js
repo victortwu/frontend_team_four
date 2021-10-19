@@ -8,6 +8,8 @@ import Home from './components/Home'
 import Scanner from './components/Scanner'
 import Map from './components/Map'
 import Navigation from './components/Navigation'
+import Search from './pages/search'
+import Display from './pages/display'
 
 
 let appBaseURL = ''
@@ -65,6 +67,16 @@ function App() {
             <Route exact path='/materials'>
                 <div className='mainWrapper'>
                     <RecycleSymbols recTypeData={recTypeData}/>
+                </div>
+            </Route>
+            <Route exact path='/search'>
+                <div className='mainWrapper'>
+                    <Search/>
+                </div>
+            </Route>
+            <Route exact path='/display/:upc'>
+                <div className='mainWrapper'>
+                    <Display/>
                 </div>
             </Route>
 
