@@ -12,7 +12,7 @@ const Display = ()=>{
         const response = await fetch (`http://localhost:5000/upc/${upc}`)
         const responseData = await response.json()
         console.log(responseData)
-        if (responseData['success']==false){
+        if (responseData['num_results']==0){
             history.push('/')
         }
     }
