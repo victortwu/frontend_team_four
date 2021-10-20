@@ -1,4 +1,7 @@
+
+
 const ShowScanned =(props) => {
+
   return(
     <div className='bg-cl4 h-full'>
       SHOW SCANNED

@@ -11,7 +11,7 @@ const Scanner = () => {
   const [showProductPage, setShowProductPage] = useState(false)
   const [response, setResponse] = useState(null) // this is for testing barcodescanner api call
   // useState initialized with testing code
-  const [barcodeString, setBarcodeString] = useState('0111222333446')
+  const [barcodeString, setBarcodeString] = useState('')
   const [productData, setProductData] = useState({})
 
 
@@ -28,6 +28,21 @@ const Scanner = () => {
   const closePrPg = () => {
     setShowProductPage(false)
   }
+
+  const getProduct = (code) => {
+
+    //setShowProductPage(true)
+
+
+    // upc test call, NOT from Cloudmersive
+    axios.get(`http://localhost:5000/upc/${code}`)
+      .then(res => {
+        setProductData(res.data)
+      })
+      .catch(err => {console.error(err)})
+  }
+
+
 
   // credit:
   // https://stackoverflow.com/questions/16968945/convert-base64-png-data-to-javascript-file-objects/16972036
@@ -49,19 +64,37 @@ const Scanner = () => {
       }
       // credit: help from Daniel Edminster
       try {
-        let req = await axios.request({
-          method: 'POST',
-          url: 'https://api.cloudmersive.com/barcode/scan/image',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            "Apikey": process.env.REACT_APP_BCODEAPIKEY
-          },
-          data: formData
-        })
 
-        console.log(req.data);
-        setResponse(req.data.Successful) //just to test
+        // fake data here for testing flow of app w/o wasting api calls
+        const fakeScanData = {
+          Successfull: true, // <--- keep getting a 200, false on my camera
+          BarcodeType: 'upc',
+          RawText: '0111222333446' //<--- this is what we want from cloudmersive
+        }
+
+
+// uncomment below to make actual api calls
+
+        // let req = await axios.request({
+        //   method: 'POST',
+        //   url: 'https://api.cloudmersive.com/barcode/scan/image',
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data',
+        //     "Apikey": process.env.REACT_APP_BCODEAPIKEY
+        //   },
+        //   data: formData
+        // })
+        //
+        // console.log(req.data)
+
         // barcodeString gets set HERE
+        setBarcodeString(fakeScanData.RawText) // on real call --> req.data.RawText
+        setResponse(fakeScanData.Successfull) //just to test
+
+        getProduct(fakeScanData.RawText)
+
+
+
 
 
       }
@@ -82,16 +115,6 @@ const Scanner = () => {
     [webCamRef]
   )
 
-  const getProduct = () => {
-    console.log('Clicked')
-    setShowProductPage(true)
-    // upc test call, NOT from Cloudmersive
-    axios.get(`http://localhost:5000/upc/${barcodeString}`)
-      .then(res => {
-        setProductData(res.data)
-      })
-      .catch(err => {console.error(err)})
-  }
 
 // CSS
   const positionForOverlay = {
@@ -132,8 +155,8 @@ const Scanner = () => {
     zIndex: '-1'
   }
 
-
-
+console.log(barcodeString)
+console.log(productData)
 return(
         <div style={{position: 'relative', height: '100%'}} className='m-5'>
             <div style={webcamWrap}>
@@ -169,7 +192,7 @@ return(
                             :   <button style={{position: 'absolute', bottom: '20%', left: '50%', transform: 'translateX(-50%, -50%)'}}
                                   onClick={()=> {
                                     scan()
-                                    getProduct()
+                                    setShowProductPage(true)
                                   }
                                 }>
                                   SCAN
