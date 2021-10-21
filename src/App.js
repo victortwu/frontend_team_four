@@ -36,20 +36,32 @@ function App() {
       .catch(err => { console.error(err.message) })
   }, [])
 
+const greenHill = {
+  position: 'absolute',
+  marginTop: '850px',
+  backgroundColor: 'gray',
+  width: '100%',
+  height: '100%',
+  animationDelay: '3s',
+  animation: 'slideUp 2s forwards'
+}
+
 
   return (
     <BrowserRouter>
 
-      <main className='App bg-cl1'>
-
+      <main className='App'>
+      <div style={greenHill}/>
         <Navigation/>
 
       <Switch>
 
             <Route exact path='/'>
+
                 <div className='mainWrapper'>
                     <Home/>
                 </div>
+
             </Route>
 
             <Route exact path='/scanner'>
