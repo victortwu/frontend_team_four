@@ -39,7 +39,8 @@ function App() {
 const greenHill = {
   position: 'absolute',
   marginTop: '850px',
-  backgroundColor: 'gray',
+  //background: 'linear-gradient(179.96deg, rgba(13, 173, 141, 0.75) 13.75%, rgba(13, 173, 141, 0.8) 44.6%, #0D846C 87.99%, #0A584D 112.81%)',
+  //backgroundImage: "url('./assets/GrassandTruckTestNoTruck.svg')",
   width: '100%',
   height: '100%',
   animationDelay: '3s',
@@ -51,7 +52,7 @@ const greenHill = {
     <BrowserRouter>
 
       <main className='App'>
-      <div style={greenHill}/>
+      <div style={greenHill} id='backgroundTwo'/>
         <Navigation/>
 
       <Switch>

@@ -1,13 +1,18 @@
 .App {
   position: relative;
   background-image: url('./assets/Sky 1.svg');
+  /* background-image: url('./assets/GrassandTruckTestNoTruck.svg'); */
   background-repeat: no-repeat;
   background-size: cover;
   max-width: 500px;
   height: 100vh;
 }
 
-
+#backgroundTwo {
+  background-image: url('./assets/GrassandTruck2.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .mainWrapper {
   position: absolute;
