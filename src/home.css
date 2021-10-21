@@ -16,7 +16,7 @@
 }
 
 /* doesn't work */
-.factiodDiv > p {
+.factoidP {
   animation: fadeIn 1s;
 }
 

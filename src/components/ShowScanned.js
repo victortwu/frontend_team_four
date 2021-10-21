@@ -1,14 +1,24 @@
-
+import '../productPage.css'
 
 const ShowScanned =(props) => {
 
   return(
-    <div className='bg-cl4 h-full'>
-      Barcode: {`${props.barcodeString}`}
 
-      Product info: {`${props.productData.description}`}
 
-      <button onClick={props.closePrPg}>BACK</button>
+    <div className='mainWrapper'>
+
+        <div className='productWrapper'>
+
+          <div className='boxOne'>
+            <p>Barcode: {`${props.barcodeString}`}</p>
+
+            <p>Product info: {`${props.productData?.description}`}</p>
+
+            <button onClick={props.closePrPg}>BACK</button>
+          </div>
+
+        </div>
+
     </div>
   )
 }

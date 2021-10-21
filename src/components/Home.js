@@ -93,19 +93,24 @@ const Home = () => {
   }
 
   const dummyFacts = ['Banana', 'Orange', 'Apple', 'Mango']
-  const getFactiods = () => {
-    const randomIndex = Math.floor(Math.random() * (dummyFacts.length - 1))
-    setFactoid(dummyFacts[randomIndex])
+  const dummyFElements = dummyFacts.map((el,i) => {
+    return <p key={el+i} id='factoidP'>{el}</p>
+  })
+  const getFactiods = () => { // CSS fadeIn animation not working
+    
+    const randomIndex = Math.floor(Math.random() * (dummyFElements.length - 1))
+
+    setFactoid(dummyFElements[randomIndex])
   }
 
 useEffect(()=> {
   // let intId = setInterval(()=> {
   //   getFactiods()
   // }, 2500)
-  //return clearInterval(intId)
+  // return clearInterval(intId)
 }, [])
 
-
+console.log(factoid)
   return(
     <>
 
@@ -120,7 +125,7 @@ useEffect(()=> {
                 <div style={{height: '20%'}}/>
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                      <p>{factoid}</p>
+                      {factoid}
                     </div>
 
                     <div id='scanBtnLink' >
