@@ -75,17 +75,17 @@ const Scanner = () => {
 
 // uncomment below to make actual api calls
 
-        // let req = await axios.request({
-        //   method: 'POST',
-        //   url: 'https://api.cloudmersive.com/barcode/scan/image',
-        //   headers: {
-        //     'Content-Type': 'multipart/form-data',
-        //     "Apikey": process.env.REACT_APP_BCODEAPIKEY
-        //   },
-        //   data: formData
-        // })
-        //
-        // console.log(req.data)
+        let req = await axios.request({
+          method: 'POST',
+          url: 'https://api.cloudmersive.com/barcode/scan/image',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            "Apikey": process.env.REACT_APP_BCODEAPIKEY
+          },
+          data: formData
+        })
+
+        console.log(req.data)
 
         // barcodeString gets set HERE
         setBarcodeString(fakeScanData.RawText) // on real call --> req.data.RawText
@@ -157,12 +157,19 @@ const Scanner = () => {
 
 console.log(barcodeString)
 console.log(productData)
+
+const videoConstraints = {
+     facingMode: "environment"
+   }
+
+
 return(
         <div style={{position: 'relative', height: '100%'}} className='m-5'>
             <div style={webcamWrap}>
+
                 <Webcam
                     style={videoElementStyle}
-
+                    videoConstraints={videoConstraints}
                     ref={webCamRef}
                     screenshotFormat='image/jpeg'
                 />
@@ -211,3 +218,4 @@ return(
 }
 
 export default Scanner
+//<input type="file" accept="image/*" capture="camera"/>
