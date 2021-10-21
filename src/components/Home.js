@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import ManualBarcodeSearch from './ManualBarcodeSearch'
@@ -12,6 +12,7 @@ const Home = () => {
   const [barcodeString, setBarcodeString] = useState('')
   const [productData, setProductData] = useState({})
   const [showProductPage, setShowProductPage] = useState(false)
+  const [factoid, setFactoid] = useState('')
 
   const webCamRef = useRef(null)
 
@@ -91,6 +92,19 @@ const Home = () => {
     setShowProductPage(true)
   }
 
+  const dummyFacts = ['Banana', 'Orange', 'Apple', 'Mango']
+  const getFactiods = () => {
+    const randomIndex = Math.floor(Math.random() * (dummyFacts.length - 1))
+    setFactoid(dummyFacts[randomIndex])
+  }
+
+useEffect(()=> {
+  // let intId = setInterval(()=> {
+  //   getFactiods()
+  // }, 2500)
+  //return clearInterval(intId)
+}, [])
+
 
   return(
     <>
@@ -105,10 +119,9 @@ const Home = () => {
         :     <div className='homeCnt'>
                 <div style={{height: '20%'}}/>
                 <div className='mx-6'>
-                    <header>
-                        <h3>Scan & Sea</h3>
-                        <p>your plastic our oceans</p>
-                    </header>
+                    <div className='factiodDiv'>
+                      <p>{factoid}</p>
+                    </div>
 
                     <div id='scanBtnLink' >
 
@@ -140,10 +153,3 @@ const Home = () => {
 }
 
 export default Home
-// <Link to='/scanner'>
-//     <div id='scanBtnLink' className='rounded-full'>
-//         <div id='searchIcon'>ic</div>
-//         <p>Search Product</p>
-//         <div id='bcodeIcon'>ic</div>
-//     </div>
-// </Link>
