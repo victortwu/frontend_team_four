@@ -33,9 +33,9 @@ const Home = () => {
 
 
 
-  const getBarcode = async(f) => {
+  const getBarcode = async(param) => {
 
-    const file = f
+    const file = param
 
 
     let formData = new FormData()

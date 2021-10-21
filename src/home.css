@@ -4,6 +4,7 @@
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
+  animation: fadeIn 1s;
 }
 
 #mapBtn, #materialsBtn {
@@ -42,4 +43,9 @@
 
 #bcodeIcon {
   margin-right: 1.5rem;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }

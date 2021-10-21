@@ -1,8 +1,8 @@
 .App {
   position: relative;
-  background-image: url('./assets/Sky 1.svg');
+  background-image: url('./assets/BlueSkyAndWelcomeLogo.svg');
   /* background-image: url('./assets/GrassandTruckTestNoTruck.svg'); */
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
   max-width: 500px;
   height: 100vh;
@@ -24,7 +24,7 @@
 
 @keyframes slideUp {
   0% {
-    transform: translateY(0);
+    transform: translateY(-200px);
   }
   100% {
     transform: translateY(-700px);

@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'developement') {
 function App() {
 
   const [recTypeData, setRecTypeData] = useState([])
-
+  const [loadHomePage, setLoadHomePage] = useState(false)
 
   useEffect(() => {
     axios.get(appBaseURL + '/plastics')
@@ -34,17 +34,22 @@ function App() {
         setRecTypeData(res.data)
       })
       .catch(err => { console.error(err.message) })
+
+      // delay home page render
+      setTimeout(()=> {
+          setLoadHomePage(true)
+      }, 3500)
+
   }, [])
 
 const greenHill = {
   position: 'absolute',
   marginTop: '850px',
-  //background: 'linear-gradient(179.96deg, rgba(13, 173, 141, 0.75) 13.75%, rgba(13, 173, 141, 0.8) 44.6%, #0D846C 87.99%, #0A584D 112.81%)',
-  //backgroundImage: "url('./assets/GrassandTruckTestNoTruck.svg')",
   width: '100%',
   height: '100%',
+
+  animation: 'slideUp 2s forwards',
   animationDelay: '3s',
-  animation: 'slideUp 2s forwards'
 }
 
 
@@ -53,14 +58,14 @@ const greenHill = {
 
       <main className='App'>
       <div style={greenHill} id='backgroundTwo'/>
-        <Navigation/>
+            { loadHomePage ? <Navigation/> : '' }
 
       <Switch>
 
             <Route exact path='/'>
 
                 <div className='mainWrapper'>
-                    <Home/>
+                    { loadHomePage ? <Home/> : '' }
                 </div>
 
             </Route>
