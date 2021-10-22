@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react'
 import Webcam from 'react-webcam'
 import ManualBarcodeSearch from './ManualBarcodeSearch'
-import ShowScanned from './ShowScanned'
+
 import axios from 'axios'
 
 const Scanner = () => {
@@ -176,10 +176,7 @@ return(
 
                 {
                   showProductPage ? <div style={positionForOverlay}>
-                                        <ShowScanned
-                                            response={response} closePrPg={closePrPg}
-                                            productData={productData}
-                                        />
+                                      
                                     </div>
 
                   :     <div style={positionForOverlay}>

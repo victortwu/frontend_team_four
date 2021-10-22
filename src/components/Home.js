@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import ManualBarcodeSearch from './ManualBarcodeSearch'
-import ShowScanned from './ShowScanned'
+import ProductPage from './ProductPage'
 
-import '../home.css'
+import '../styleSheets/home.css'
 
 
 const Home = () => {
@@ -97,7 +97,7 @@ const Home = () => {
     return <p key={el+i} id='factoidP'>{el}</p>
   })
   const getFactiods = () => { // CSS fadeIn animation not working
-    
+
     const randomIndex = Math.floor(Math.random() * (dummyFElements.length - 1))
 
     setFactoid(dummyFElements[randomIndex])
@@ -115,7 +115,7 @@ console.log(factoid)
     <>
 
     {
-        showProductPage ? <ShowScanned
+        showProductPage ? <ProductPage
                               closePrPg={closePrPg}
                               barcodeString={barcodeString}
                               productData={productData}

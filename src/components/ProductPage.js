@@ -1,6 +1,6 @@
-import '../productPage.css'
+import '../styleSheets/productPage.css'
 
-const ShowScanned =(props) => {
+const ProductPage =(props) => {
 
   return(
 
@@ -23,4 +23,4 @@ const ShowScanned =(props) => {
   )
 }
 
-export default ShowScanned
+export default ProductPage

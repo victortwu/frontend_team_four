@@ -28,20 +28,20 @@
 }
 
 #mapBtn {
-  background-image: url('./assets/Interaction Menu.svg');
+  background-image: url('../assets/Interaction Menu.svg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #materialsBtn {
-  background-image: url('./assets/PlasticTypeButton.svg');
+  background-image: url('../assets/PlasticTypeButton.svg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #scanBtnLink {
   position: relative;
-  background-image: url('./assets/Searchbox copy.svg');
+  background-image: url('../assets/Searchbox copy.svg');
   background-repeat: no-repeat;
   background-size: contain;
   margin-top: 3rem;

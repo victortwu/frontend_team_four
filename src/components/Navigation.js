@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import '../nav.css'
+import '../styleSheets/nav.css'
 
 const Navigation =()=> {
 
