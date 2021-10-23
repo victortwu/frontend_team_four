@@ -3,15 +3,17 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import ManualBarcodeSearch from './ManualBarcodeSearch'
 import ProductPage from './ProductPage'
+import RecycleSymbols from './RecycleSymbols'
 
 import '../styleSheets/home.css'
 
 
-const Home = () => {
+const Home = (props) => {
 
   const [barcodeString, setBarcodeString] = useState('')
   const [productData, setProductData] = useState({})
   const [showProductPage, setShowProductPage] = useState(false)
+  const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
   const [factoid, setFactoid] = useState('')
 
   const webCamRef = useRef(null)
@@ -110,7 +112,7 @@ useEffect(()=> {
   // return clearInterval(intId)
 }, [])
 
-console.log(factoid)
+//console.log(factoid)
   return(
     <>
 
@@ -143,14 +145,16 @@ console.log(factoid)
                     <div id='mapBtn'></div>
                     </Link>
 
-                    <Link to='/materials'>
-                    <div id='materialsBtn'></div>
-                    </Link>
+                    <div  onClick={()=> setShowRecycleSymbols(!showRecycleSymbols)} id='materialsBtn'></div>
+
                 </div>
 
             </div>
     }
 
+    {
+      showRecycleSymbols ? <RecycleSymbols closeModal={setShowRecycleSymbols}/> : ''
+    }
 
 
     </>
@@ -158,3 +162,7 @@ console.log(factoid)
 }
 
 export default Home
+
+// <Link to='/materials'>
+//
+// </Link>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+//import axios from 'axios'
 import './App.css';
 import RecycleSymbols from './components/RecycleSymbols'
-//import NavBar from "./components/Navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from './components/Home'
 import Scanner from './components/Scanner'
@@ -12,28 +11,24 @@ import Search from './pages/search'
 import Display from './pages/display'
 
 
-let appBaseURL = ''
+//let appBaseURL = ''
+
 // for now
-if (process.env.NODE_ENV === 'developement') {
-  appBaseURL = 'http://localhost:5000'
-} else {
-  console.log(process.env.NODE_ENV)
-  appBaseURL = 'http://localhost:5000'
-}
+
+// if (process.env.NODE_ENV === 'developement') {
+//   appBaseURL = 'http://localhost:5000'
+// } else {
+//   console.log(process.env.NODE_ENV)
+//   appBaseURL = 'http://localhost:5000'
+// }
 
 
 
 function App() {
 
-  const [recTypeData, setRecTypeData] = useState([])
   const [loadHomePage, setLoadHomePage] = useState(false)
 
   useEffect(() => {
-    axios.get(appBaseURL + '/plastics')
-      .then(res => {
-        setRecTypeData(res.data)
-      })
-      .catch(err => { console.error(err.message) })
 
       // delay home page render
       setTimeout(()=> {
@@ -84,7 +79,7 @@ const greenHill = {
 
             <Route exact path='/materials'>
                 <div className='mainWrapper'>
-                    <RecycleSymbols recTypeData={recTypeData}/>
+                    <RecycleSymbols/>
                 </div>
             </Route>
             <Route exact path='/search'>
