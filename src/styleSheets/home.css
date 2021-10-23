@@ -11,14 +11,10 @@
   background-color: var(--lightGr);
   padding: 1rem;
   height: 8rem;
-  color: white;
+  color: var(--darkGr);
   border-radius: 1rem;
 }
 
-/* doesn't work */
-.factoidP {
-  animation: fadeIn 1s;
-}
 
 #mapBtn, #materialsBtn {
   width: 40vw;

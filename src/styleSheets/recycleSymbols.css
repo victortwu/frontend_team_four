@@ -104,12 +104,15 @@
 }
 
 .linkToMapBtn {
+  background-image: url('../assets/Maps button.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
   width: 100%;
-  height: 3rem;
+  height: 4rem;
   margin-top: 2.5rem;
-  background-color: var(--darkGr);
+  /* background-color: var(--darkGr); */
   border-radius: .5rem;
-  color: var(--lightGr)
+  /* color: var(--lightGr) */
 }
 
 /* keyframe animations */

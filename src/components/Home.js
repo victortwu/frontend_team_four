@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import TextLoop from 'react-text-loop'
 import ManualBarcodeSearch from './ManualBarcodeSearch'
 import ProductPage from './ProductPage'
 import RecycleSymbols from './RecycleSymbols'
@@ -23,6 +24,9 @@ const Home = (props) => {
     setShowProductPage(false)
   }
 
+  const closeRecMenu = () => {
+    setShowRecycleSymbols(false)
+  }
 
   const getProduct = async(code) => {
 
@@ -95,15 +99,15 @@ const Home = (props) => {
   }
 
   const dummyFacts = ['Banana', 'Orange', 'Apple', 'Mango']
-  const dummyFElements = dummyFacts.map((el,i) => {
-    return <p key={el+i} id='factoidP'>{el}</p>
-  })
-  const getFactiods = () => { // CSS fadeIn animation not working
-
-    const randomIndex = Math.floor(Math.random() * (dummyFElements.length - 1))
-
-    setFactoid(dummyFElements[randomIndex])
-  }
+  // const dummyFElements = dummyFacts.map((el,i) => {
+  //   return <p key={el+i} id='factoidP'>{el}</p>
+  // })
+  // const getFactiods = () => { // CSS fadeIn animation not working
+  //
+  //   const randomIndex = Math.floor(Math.random() * (dummyFElements.length - 1))
+  //
+  //   setFactoid(dummyFElements[randomIndex])
+  // }
 
 useEffect(()=> {
   // let intId = setInterval(()=> {
@@ -127,7 +131,7 @@ useEffect(()=> {
                 <div style={{height: '20%'}}/>
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                      {factoid}
+                      <TextLoop children={dummyFacts}/>
                     </div>
 
                     <div id='scanBtnLink' >
@@ -153,7 +157,7 @@ useEffect(()=> {
     }
 
     {
-      showRecycleSymbols ? <RecycleSymbols closeModal={setShowRecycleSymbols}/> : ''
+      showRecycleSymbols ? <RecycleSymbols closeRecMenu={closeRecMenu}/> : ''
     }
 
 

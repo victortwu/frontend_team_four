@@ -3,6 +3,9 @@ import axios from 'axios'
 import '../styleSheets/recycleSymbols.css'
 import { ReactComponent as XButton } from '../assets/Close Modal.svg'
 import { Link } from 'react-router-dom'
+import { ReactComponent as DropArrow } from '../assets/Drop-Down Arrow.svg'
+
+
 
 let appBaseURL = ''
 // for now
@@ -51,11 +54,9 @@ console.log(singleRecType)
           <span id='lineTwo'>recycle code</span>
 
 
-            <div onClick={()=> {
-                    props.closeModal(false)
-
-                    }
-                  } id='xBtn'><XButton/></div>
+            <div onClick={()=> props.closeRecMenu()} id='xBtn'>
+              <XButton/>
+            </div>
 
 
           <div className='recycleTypesCnt'>
@@ -110,12 +111,18 @@ console.log(singleRecType)
                     </tr>
                   </tbody>
                 </table>
-
+                <div style={{position: 'absolute',
+                            bottom: '1rem',
+                            right: '1rem'}}
+                      onClick={()=> setShowRecTypeModal(false)}>
+                    <DropArrow/>
+                </div>
               </div>
 
-              <button onClick={()=> setShowRecTypeModal(false)} className='linkToMapBtn'>
-                CLOSE
-              </button>
+              <Link to='/map'>
+                <div className='linkToMapBtn'/>
+              </Link>
+
             </div>
           </div> : ''
         }
