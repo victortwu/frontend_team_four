@@ -65,6 +65,11 @@
   border-radius: 1rem;
 }
 
+.recTypeBtn:focus {
+  background-color: var(--darkGr);
+  color: white;
+}
+
 
 .bottomSpacer {
   height: 6rem;
@@ -80,8 +85,8 @@
   position: absolute;
   left: 1rem;
   right: 1rem;
-  bottom: -6rem;
-  height: 110%;
+  bottom: -15rem;
+  height: 130%;
   border-radius: 2rem;
   /* animation: slideUp2 1s; */
 }
@@ -103,22 +108,38 @@
   color: var(--darkGr);
 }
 
+.infoBoxExtention {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--lightGr);
+  padding: 1.5rem;
+  width: 100%;
+  height: 15rem;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  color: var(--darkGr);
+}
+
 .linkToMapBtn {
+  position: absolute;
+  bottom: -6rem;
+  left: 0;
   background-image: url('../assets/Maps button.svg');
   background-repeat: no-repeat;
   background-size: contain;
   width: 100%;
   height: 4rem;
-  margin-top: 2.5rem;
-  /* background-color: var(--darkGr); */
   border-radius: .5rem;
-  /* color: var(--lightGr) */
 }
 
-/* keyframe animations */
+
+
+/* keyframe animations and classes*/
 
 .up {
   animation: slideUp2 1s;
+
 }
 
 .down {
@@ -140,5 +161,23 @@
   }
   100% {
     transform: translateY(800px);
+  }
+}
+
+@keyframes extend {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: -13rem;
+  }
+}
+
+@keyframes retract {
+  0% {
+    bottom: -13rem;
+  }
+  100% {
+    bottom: 0;
   }
 }

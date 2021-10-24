@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import '../styleSheets/recycleSymbols.css'
 import { ReactComponent as XButton } from '../assets/Close Modal.svg'
@@ -7,42 +7,52 @@ import { ReactComponent as DropArrow } from '../assets/Drop-Down Arrow.svg'
 
 
 
-let appBaseURL = ''
+let appBaseURL = 'http://localhost:5000'
+
 // for now
-if (process.env.NODE_ENV === 'developement') {
-  appBaseURL = 'http://localhost:5000'
-} else {
-  console.log(process.env.NODE_ENV)
-  appBaseURL = 'http://localhost:5000'
+if (process.env.NODE_ENV !== 'developement') {
+  //appBaseURL = 'http://localhost:5000'
 }
 
-
-
+console.log(appBaseURL)
 
 const RecycleSymbols = (props) => {
 
 
-const [recTypeData, setRecTypeData] = useState([])
-const [singleRecType, setSingleRecType] = useState({})
-const [showRecTypeModal, setShowRecTypeModal] = useState(false)
-const [animation, setAnimation] = useState('up')
+  const [recTypeData, setRecTypeData] = useState([])
+  const [singleRecType, setSingleRecType] = useState({})
+  const [showRecTypeModal, setShowRecTypeModal] = useState(false)
+  const [infoBoxExtended, setInfoBoxExtended] = useState(false)
+  const [animation, setAnimation] = useState('up')
 
-useEffect(()=> {
-  axios.get(appBaseURL + '/plastics')
-    .then(res => {
-      setRecTypeData(res.data)
-    })
-    .catch(err => { console.error(err.message) })
+  const extentionRef = useRef()
+  const arrowRef = useRef()
 
-}, [])
+    useEffect(()=> {
+      axios.get(appBaseURL + '/plastics')
+        .then(res => {
+          setRecTypeData(res.data)
+        })
+        .catch(err => { console.error(err.message) })
 
-const getById = (id) => {
-  axios.get(appBaseURL + '/plastics' + '/' + id)
-    .then(res => {
-      setSingleRecType(res.data)
-    })
-    .catch(err => { console.error(err.message) })
-}
+    }, [])
+
+    const getById = (id) => {
+      axios.get(appBaseURL + '/plastics' + '/' + id)
+        .then(res => {
+          setSingleRecType(res.data)
+        })
+        .catch(err => { console.error(err.message) })
+    }
+
+    const extendInfoBox = () => {
+      extentionRef.current.style.animation = 'extend .5s forwards'
+    }
+
+    const retractInfoBox = () => {
+      extentionRef.current.style.animation = 'retract .5s forwards'
+    }
+
 
 console.log(singleRecType)
 
@@ -93,6 +103,16 @@ console.log(singleRecType)
           showRecTypeModal ?
 
           <div className={`showModalWrapper ${animation}`}>
+
+          <div className='backArrow'
+                style={{position: 'absolute',
+                        top: '1.5rem',
+                        left: '1.5rem',
+                        transform: 'rotate(-270deg)'}}
+                onClick={()=> setShowRecTypeModal(false)}>
+              <DropArrow/>
+          </div>
+
             <div className='infoAndBtnContainer'>
               <div className='infoBox'>
 
@@ -105,25 +125,66 @@ console.log(singleRecType)
                       <td style={{fontWeight: '500', paddingBottom: '1rem'}}>CAN YOU RECYCLE<br/>THIS NUMBER?</td>
                       <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><span style={{fontWeight: '500'}}>Yes!</span> Some Data here...</td>
                     </tr>
-                    <tr style={{fontSize: '.8rem'}}>
+                    <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
                       <td style={{fontWeight: '500', paddingTop: '1rem'}}>PICK UP?<br/>DROP OFF?</td>
                       <td style={{paddingTop: '1rem', paddingLeft: '1rem'}}>Contact you local<br/>recycling company<br/>for more info</td>
                     </tr>
                   </tbody>
                 </table>
-                <div style={{position: 'absolute',
-                            bottom: '1rem',
-                            right: '1rem'}}
-                      onClick={()=> setShowRecTypeModal(false)}>
-                    <DropArrow/>
+
+
+                <div ref={extentionRef} className='infoBoxExtention'>
+                    <table className='extenstionTable' style={{position: 'absolute', bottom: '2rem'}}>
+                      <tbody>
+                        <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
+                          <td style={{fontWeight: '500', paddingBottom: '1rem'}}>CAN YOU RECYCLE<br/>THIS NUMBER?</td>
+                          <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><span style={{fontWeight: '500'}}>Yes!</span> Some Data here...</td>
+                        </tr>
+                        <tr style={{fontSize: '.8rem'}}>
+                          <td style={{fontWeight: '500', paddingTop: '1rem'}}>PICK UP?<br/>DROP OFF?</td>
+                          <td style={{paddingTop: '1rem', paddingLeft: '1rem'}}>Contact you local<br/>recycling company<br/>for more info</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    {
+                      infoBoxExtended ?   <div ref={arrowRef}
+                                                style={{position: 'absolute',
+                                                        bottom: '1rem',
+                                                        right: '1rem',
+                                                        transform: 'rotate(180deg)'}}
+                                                onClick={()=> {
+                                                  retractInfoBox()
+                                                  setInfoBoxExtended(false)
+                                                }}>
+                                                <DropArrow/>
+                                          </div>
+
+                                      :   <div ref={arrowRef}
+                                              style={{position: 'absolute',
+                                                      bottom: '1rem',
+                                                      right: '1rem'}}
+                                              onClick={()=> {
+                                                extendInfoBox()
+                                                setInfoBoxExtended(true)
+                                              }}>
+                                            <DropArrow/>
+                                          </div>
+                    }
+
+
+
+
+                    <Link to='/map'>
+                      <div className='linkToMapBtn'/>
+                    </Link>
+
                 </div>
+
               </div>
 
-              <Link to='/map'>
-                <div className='linkToMapBtn'/>
-              </Link>
-
             </div>
+
           </div> : ''
         }
 
