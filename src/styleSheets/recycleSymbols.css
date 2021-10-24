@@ -8,7 +8,7 @@
   bottom: -6rem;
   height: 95%;
   border-radius: 2rem;
-  /* animation: slideUp2 1s; */
+  animation: slideUp2 1s;
 }
 
 #lineOne, #lineTwo, #xBtn {
@@ -88,7 +88,23 @@
   bottom: -15rem;
   height: 130%;
   border-radius: 2rem;
-  /* animation: slideUp2 1s; */
+  animation: slideUp2 1s;
+}
+
+.recLogoHeader {
+  position: absolute;
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4rem;
+  height: 4rem;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid;
+  border-radius: 1rem;
 }
 
 .infoAndBtnContainer {
@@ -135,16 +151,9 @@
 
 
 
-/* keyframe animations and classes*/
+/* keyframe animations */
 
-.up {
-  animation: slideUp2 1s;
 
-}
-
-.down {
-  animation: slideDown2 1s;
-}
 
 @keyframes slideUp2 {
   0% {

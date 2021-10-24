@@ -33,7 +33,7 @@ function App() {
       // delay home page render
       setTimeout(()=> {
           setLoadHomePage(true)
-      }, 3500)
+      }, 2000)
 
   }, [])
 
@@ -44,7 +44,7 @@ const greenHill = {
   height: '100%',
 
   animation: 'slideUp 2s forwards',
-  animationDelay: '3s',
+  animationDelay: '1s',
 }
 
 

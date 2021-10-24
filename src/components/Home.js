@@ -25,7 +25,9 @@ const Home = (props) => {
   }
 
   const closeRecMenu = () => {
-    setShowRecycleSymbols(false)
+    setTimeout(()=> {
+      setShowRecycleSymbols(false)
+    },1000)
   }
 
   const getProduct = async(code) => {

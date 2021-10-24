@@ -54,13 +54,6 @@ const Navigation =()=> {
             {map}
           </li>
 
-          <li onClick={()=> {
-              toggleDropDown()
-              spinHamburger()
-            }}>
-            {materials}
-          </li>
-
         </ul>
       </div>
 

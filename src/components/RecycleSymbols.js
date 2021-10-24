@@ -23,10 +23,12 @@ const RecycleSymbols = (props) => {
   const [singleRecType, setSingleRecType] = useState({})
   const [showRecTypeModal, setShowRecTypeModal] = useState(false)
   const [infoBoxExtended, setInfoBoxExtended] = useState(false)
-  const [animation, setAnimation] = useState('up')
+
 
   const extentionRef = useRef()
   const arrowRef = useRef()
+  const recMenuRef = useRef()
+  const recShowModalRef = useRef()
 
     useEffect(()=> {
       axios.get(appBaseURL + '/plastics')
@@ -53,18 +55,33 @@ const RecycleSymbols = (props) => {
       extentionRef.current.style.animation = 'retract .5s forwards'
     }
 
+    const closeRecShowModal = () => {
+      recShowModalRef.current.style.animation = 'slideDown2 1s'
+      setTimeout(()=> {
+        setShowRecTypeModal(false)
+      }, 1000)
+    }
+
+    const slideMenuDown = () => {
+      recMenuRef.current.style.animation = 'slideDown2 1s'
+    }
+
 
 console.log(singleRecType)
 
   return(
       <>
-        <div className={`gridWrapper ${animation}`}>
+        <div ref={recMenuRef} className='gridWrapper'>
 
           <span id='lineOne'>Please select your</span>
           <span id='lineTwo'>recycle code</span>
 
 
-            <div onClick={()=> props.closeRecMenu()} id='xBtn'>
+            <div onClick={()=> {
+              slideMenuDown()
+              props.closeRecMenu()
+
+            }} id='xBtn'>
               <XButton/>
             </div>
 
@@ -102,16 +119,21 @@ console.log(singleRecType)
         {
           showRecTypeModal ?
 
-          <div className={`showModalWrapper ${animation}`}>
+          <div ref={recShowModalRef} className='showModalWrapper'>
 
           <div className='backArrow'
                 style={{position: 'absolute',
                         top: '1.5rem',
                         left: '1.5rem',
                         transform: 'rotate(-270deg)'}}
-                onClick={()=> setShowRecTypeModal(false)}>
+                onClick={()=> {
+                  closeRecShowModal()
+                  setInfoBoxExtended(false)
+                }}>
               <DropArrow/>
           </div>
+
+          <div className='recLogoHeader'>{singleRecType.recycleNumber}</div>
 
             <div className='infoAndBtnContainer'>
               <div className='infoBox'>
