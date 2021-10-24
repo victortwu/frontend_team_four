@@ -139,18 +139,18 @@ const RecycleSymbols = (props) => {
             <div className='infoAndBtnContainer'>
               <div className='infoBox'>
 
-                <h1 style={{fontWeight: '600', fontSize: '1.1rem'}}>{singleRecType.recycleInfoOptionOne} | PETE</h1>
-                <span style={{marginTop: '2rem', fontStyle: 'italic', fontWeight: '200'}}>(name of the plastic)</span>
+                <h1 style={{fontWeight: '600', fontSize: '1.1rem'}}>Number {singleRecType.recycleNumber} | {singleRecType.recycleCode}</h1>
+                <span style={{marginTop: '2rem', fontStyle: 'italic', fontWeight: '200'}}>({singleRecType.plasticName})</span>
 
                 <table style={{position: 'absolute', bottom: '2rem'}}>
                   <tbody>
                     <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
-                      <td style={{fontWeight: '500', paddingBottom: '1rem'}}>CAN YOU RECYCLE<br/>THIS NUMBER?</td>
-                      <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><span style={{fontWeight: '500'}}>Yes!</span> Some Data here...</td>
+                      <td style={{fontWeight: '500', paddingBottom: '1rem'}}>IS USED IN...</td>
+                      <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}>{singleRecType.productExamples}</td>
                     </tr>
                     <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
-                      <td style={{fontWeight: '500', paddingTop: '1rem'}}>PICK UP?<br/>DROP OFF?</td>
-                      <td style={{paddingTop: '1rem', paddingLeft: '1rem'}}>Contact you local<br/>recycling company<br/>for more info</td>
+                      <td style={{fontWeight: '500', paddingTop: '1rem'}}>IS RECYCLED INTO:</td>
+                      <td style={{padding: '1rem'}}>{singleRecType.recycledExamples}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -161,7 +161,7 @@ const RecycleSymbols = (props) => {
                       <tbody>
                         <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
                           <td style={{fontWeight: '500', paddingBottom: '1rem'}}>CAN YOU RECYCLE<br/>THIS NUMBER?</td>
-                          <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><span style={{fontWeight: '500'}}>Yes!</span> Some Data here...</td>
+                          <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><span style={{fontWeight: '500'}}>{singleRecType.canRecycle}!</span> {singleRecType.recycleInfoOne}</td>
                         </tr>
                         <tr style={{fontSize: '.8rem'}}>
                           <td style={{fontWeight: '500', paddingTop: '1rem'}}>PICK UP?<br/>DROP OFF?</td>
