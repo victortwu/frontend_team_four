@@ -87,7 +87,7 @@ const greenHill = {
                     <Search/>
                 </div>
             </Route>
-            <Route exact path='/display/:upc'>
+            <Route exact path='/display'>
                 <div className='mainWrapper'>
                     <Display/>
                 </div>

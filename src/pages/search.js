@@ -1,20 +1,29 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useHistory } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { assignUPC } from '../reduxToolkit/materialsSlice'
+import { assignLatitude, assignLongitude } from '../reduxToolkit/locationSlice'
 
 const Search = ()=> {
 
     let history = useHistory()
-
-    const [upc, setUpc] = useState()
+    const dispatch = useDispatch()
 
     const handleChange = (e) =>{
         e.preventDefault();
-        setUpc(e.target.value)
+        dispatch(assignUPC(e.target.value))
     }
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        history.push(`/display/${upc}`)
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position)=>{
+                console.log(position.coords)
+                dispatch(assignLatitude(position.coords.latitude))
+                dispatch(assignLongitude(position.coords.longitude))
+            })
+        }
+        history.push(`/display`)
     }
 
     return (
