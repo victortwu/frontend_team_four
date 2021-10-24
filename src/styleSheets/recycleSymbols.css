@@ -1,0 +1,183 @@
+/* recycle type menu */
+
+.gridWrapper {
+  background: white;
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: -6rem;
+  height: 95%;
+  border-radius: 2rem;
+  /* animation: slideUp2 1s; */
+}
+
+#lineOne, #lineTwo, #xBtn {
+  position: absolute;
+  color: var(--darkGr);
+}
+
+#lineOne, #lineTwo {
+  left: 3rem;
+}
+
+#lineOne {
+  top: .8rem;
+}
+
+#lineTwo {
+  top: 2rem;
+}
+
+#xBtn {
+  top: .8rem;
+  right: 3rem;
+}
+
+.recycleTypesCnt {
+  background-color: white;
+  margin-top: 3.5rem;
+  position: absolute;
+  padding: 2rem;
+  left: 0;
+  right: 0;
+  height: 70%;
+  display: grid;
+  grid-template-columns: '1fr 1fr';
+  grid-template-rows: '1fr 1fr 1fr 1fr';
+  grid-template-areas:  'area1 area2'
+                        'area3 area4'
+                        'area5 area6'
+                        'area7 areaQ';
+  grid-gap: 1rem;
+
+}
+
+
+
+.recTypeBtn {
+  width: 25vw;
+  height: 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--darkGr);
+  border: solid 1px black;
+  border-radius: 1rem;
+}
+
+.recTypeBtn:focus {
+  background-color: var(--darkGr);
+  color: white;
+}
+
+
+.bottomSpacer {
+  height: 6rem;
+}
+
+
+
+
+/* recycle type show modal */
+
+.showModalWrapper {
+  background-color: var(--mediumGr);
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: -15rem;
+  height: 130%;
+  border-radius: 2rem;
+  /* animation: slideUp2 1s; */
+}
+
+.infoAndBtnContainer {
+  position: absolute;
+  width: 100%;
+  height: 45%;
+  top: 10rem;
+
+}
+
+.infoBox {
+  position: relative;
+  background-color: var(--lightGr);
+  padding: 1.5rem;
+  height: 75%;
+  border-radius: 2rem;
+  color: var(--darkGr);
+}
+
+.infoBoxExtention {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--lightGr);
+  padding: 1.5rem;
+  width: 100%;
+  height: 15rem;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  color: var(--darkGr);
+}
+
+.linkToMapBtn {
+  position: absolute;
+  bottom: -6rem;
+  left: 0;
+  background-image: url('../assets/Maps button.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 4rem;
+  border-radius: .5rem;
+}
+
+
+
+/* keyframe animations and classes*/
+
+.up {
+  animation: slideUp2 1s;
+
+}
+
+.down {
+  animation: slideDown2 1s;
+}
+
+@keyframes slideUp2 {
+  0% {
+    transform: translateY(800px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown2 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(800px);
+  }
+}
+
+@keyframes extend {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: -13rem;
+  }
+}
+
+@keyframes retract {
+  0% {
+    bottom: -13rem;
+  }
+  100% {
+    bottom: 0;
+  }
+}

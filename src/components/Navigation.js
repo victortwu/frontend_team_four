@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import '../nav.css'
+import '../styleSheets/nav.css'
 
 const Navigation =()=> {
 
@@ -24,51 +24,40 @@ const Navigation =()=> {
 
   return(
     <nav className='navBar'>
-    <Link to='/'>
-        <h1 className='appLogo mt-5'>Logo</h1>
-    </Link>
-
+      <div className='logoCnt'>
+        <Link to='/'>
+            <div className='appLogo'></div>
+        </Link>
+      </div>
 
       <div className={toggleNavClass}>
         <ul className='links'>
 
-          <li onClick=
-          {
-            ()=> {
+          <li onClick={()=> {
               toggleDropDown()
               spinHamburger()
-            }
-          }>
+            }}>
             {home}
           </li>
 
-          <li onClick=
-          {
-            ()=> {
+          <li onClick={()=> {
               toggleDropDown()
               spinHamburger()
-            }
-          }>
+            }}>
             {scanner}
           </li>
 
-          <li onClick=
-          {
-            ()=> {
+          <li onClick={()=> {
               toggleDropDown()
               spinHamburger()
-            }
-          }>
+            }}>
             {map}
           </li>
 
-          <li onClick=
-          {
-            ()=> {
+          <li onClick={()=> {
               toggleDropDown()
               spinHamburger()
-            }
-          }>
+            }}>
             {materials}
           </li>
 

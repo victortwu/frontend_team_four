@@ -4,10 +4,11 @@ module.exports = {
   theme: {
     // to demo and test custom colors
     colors: {
-      cl1: 'var(--colorOne)',
-      cl2: 'var(--colorTwo)',
-      cl3: 'var(--colorThree)',
-      cl4: 'var(--colorFour)'
+      dkG: 'var(--darkGr)',
+      mdG: 'var(--mediumGr)',
+      ltG: 'var(--lightGr)',
+      fdG: 'var(--fadedGr)',
+      skyB: 'var(--skyBlue)'
     },
     extend: {
 

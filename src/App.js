@@ -1,60 +1,73 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+//import axios from 'axios'
 import './App.css';
 import RecycleSymbols from './components/RecycleSymbols'
-//import NavBar from "./components/Navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from './components/Home'
-import Scanner from './components/Scanner'
+
 import Map from './components/Map'
 import Navigation from './components/Navigation'
 import Search from './pages/search'
 import Display from './pages/display'
 
 
-let appBaseURL = ''
+//let appBaseURL = ''
+
 // for now
-if (process.env.NODE_ENV === 'developement') {
-  appBaseURL = 'http://localhost:5000'
-} else {
-  console.log(process.env.NODE_ENV)
-  appBaseURL = 'http://localhost:5000'
-}
+
+// if (process.env.NODE_ENV === 'developement') {
+//   appBaseURL = 'http://localhost:5000'
+// } else {
+//   console.log(process.env.NODE_ENV)
+//   appBaseURL = 'http://localhost:5000'
+// }
 
 
 
 function App() {
 
-  const [recTypeData, setRecTypeData] = useState([])
-
+  const [loadHomePage, setLoadHomePage] = useState(false)
 
   useEffect(() => {
-    axios.get(appBaseURL + '/plastics')
-      .then(res => {
-        setRecTypeData(res.data)
-      })
-      .catch(err => { console.error(err.message) })
+
+      // delay home page render
+      setTimeout(()=> {
+          setLoadHomePage(true)
+      }, 3500)
+
   }, [])
+
+const greenHill = {
+  position: 'absolute',
+  marginTop: '850px',
+  width: '100%',
+  height: '100%',
+
+  animation: 'slideUp 2s forwards',
+  animationDelay: '3s',
+}
 
 
   return (
     <BrowserRouter>
 
-      <main className='App bg-cl1'>
-
-        <Navigation/>
+      <main className='App'>
+      <div style={greenHill} id='backgroundTwo'/>
+            { loadHomePage ? <Navigation/> : '' }
 
       <Switch>
 
             <Route exact path='/'>
+
                 <div className='mainWrapper'>
-                    <Home/>
+                    { loadHomePage ? <Home/> : '' }
                 </div>
+
             </Route>
 
             <Route exact path='/scanner'>
                 <div className='mainWrapper'>
-                    <Scanner/>
+
                 </div>
             </Route>
 
@@ -66,7 +79,7 @@ function App() {
 
             <Route exact path='/materials'>
                 <div className='mainWrapper'>
-                    <RecycleSymbols recTypeData={recTypeData}/>
+                    <RecycleSymbols/>
                 </div>
             </Route>
             <Route exact path='/search'>
