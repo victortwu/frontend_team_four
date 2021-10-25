@@ -65,8 +65,9 @@ const greenHill = {
 
             </Route>
 
-            <Route exact path='/manualsearch'>
+            <Route exact path='/test'>
                 <div className='mainWrapper'>
+
                     <ManualBarcodeSearch />
                 </div>
             </Route>
