@@ -133,7 +133,7 @@ useEffect(()=> {
 
         :     <div className='homeCnt'>
                 <div style={{height: '20%'}}/>
-            
+
                 <div className='mx-6'>
                     <div className='factiodDiv'>
                       <TextLoop children={dummyFacts}/>
@@ -141,8 +141,8 @@ useEffect(()=> {
 
                     <div id='scanBtnLink' >
 
-                        <label style={{position: 'absolute', top: '20%', left: '65%', opacity: '0'}}>
-                          <input ref={webCamRef} onChange={getInput} type="file" accept="image/*" capture="camera"/>
+                        <label id='inputLabel' for='scanInput'>
+                          <input name='scanInput' ref={webCamRef} onChange={getInput} type="file" accept="image/*" capture="camera"/>
                         </label>
                     </div>
 
