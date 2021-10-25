@@ -4,7 +4,7 @@ import '../styleSheets/recycleSymbols.css'
 import { ReactComponent as XButton } from '../assets/Close Modal.svg'
 import { Link } from 'react-router-dom'
 import { ReactComponent as DropArrow } from '../assets/Drop-Down Arrow.svg'
-
+import RecTypeCard from './RecTypeCard'
 
 
 let appBaseURL = 'http://localhost:5000'
@@ -92,18 +92,13 @@ const RecycleSymbols = (props) => {
             {
               recTypeData.map(type => {
                 const gridSpot = `area${type.recycleNumber}`
-                return <div
-                          key={type._id}
-                          onClick={()=> {
-                            getById(type._id)
-                            setShowRecTypeModal(true)
-                            }}
-                          id={gridSpot}
-                          style={{gridArea: gridSpot, justifySelf: 'center'}}
-                          className='recTypeBtn'
-                          >
-                          {type.recycleNumber}
-                        </div>
+                return <RecTypeCard
+                            key={type._id}
+                            gridSpot={gridSpot}
+                            getById={getById}
+                            setShowRecTypeModal={setShowRecTypeModal}
+                            type={type}
+                          />
               })
             }
 
@@ -134,7 +129,10 @@ const RecycleSymbols = (props) => {
               <DropArrow/>
           </div>
 
-          <div className='recLogoHeader'>{singleRecType.recycleNumber}</div>
+          <div className='recLogoHeader'>
+                  {singleRecType.recycleNumber}
+                  <span>{singleRecType.recycleCode}</span>
+          </div>
 
             <div className='infoAndBtnContainer'>
               <div className='infoBox'>
@@ -165,7 +163,7 @@ const RecycleSymbols = (props) => {
                         </tr>
                         <tr style={{fontSize: '.8rem'}}>
                           <td style={{fontWeight: '500', paddingTop: '1rem'}}>PICK UP?<br/>DROP OFF?</td>
-                          <td style={{paddingTop: '1rem', paddingLeft: '1rem'}}>Contact you local<br/>recycling company<br/>for more info</td>
+                          <td style={{paddingTop: '1rem', paddingLeft: '1rem'}}>Contact your local<br/>recycling company<br/>for more info</td>
                         </tr>
                       </tbody>
                     </table>

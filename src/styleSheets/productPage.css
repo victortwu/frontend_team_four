@@ -5,8 +5,8 @@
   align-items: center;
 }
 
-
 .boxOne {
+  position: relative;
   background-color: var(--lightGr);
   padding: 1rem;
   width: 80vw;
@@ -15,4 +15,9 @@
   flex-direction: column;
   justify-content: space-evenly;
   border-radius: 1rem;
+}
+
+@keyframes loadingSpin {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
 }

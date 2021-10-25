@@ -11,6 +11,7 @@ import '../styleSheets/home.css'
 
 const Home = (props) => {
 
+  const [isLoading, setIsLoading] = useState(false)
   const [barcodeString, setBarcodeString] = useState('')
   const [productData, setProductData] = useState({})
   const [showProductPage, setShowProductPage] = useState(false)
@@ -43,7 +44,7 @@ const Home = (props) => {
 
 
   const getBarcode = async(param) => {
-
+    setIsLoading(true)
     const file = param
 
 
@@ -59,9 +60,9 @@ const Home = (props) => {
 
       // fake data here for testing flow of app w/o wasting api calls
       const fakeScanData = {
-        Successfull: true, // <--- keep getting a 200, false on my camera
+        Successfull: true,
         BarcodeType: 'upc',
-        RawText: '0111222333446' //<--- this is what we want from cloudmersive
+        RawText: '0111222333446'
       }
 
 
@@ -82,7 +83,7 @@ const Home = (props) => {
       // barcodeString gets set HERE
       getProduct(req.data.RawText)
       setBarcodeString(req.data.RawText)
-
+      setIsLoading(false)
       //setBarcodeString(fakeScanData.RawText) // on real call --> req.data.RawText
       //setResponse(fakeScanData.Successfull) //just to test
 
@@ -91,7 +92,7 @@ const Home = (props) => {
     catch(error) {
             console.log(error);
     }
-
+    setIsLoading(false)
   }
 
 
@@ -127,10 +128,12 @@ useEffect(()=> {
                               closePrPg={closePrPg}
                               barcodeString={barcodeString}
                               productData={productData}
+                              isLoading={isLoading}
                           />
 
         :     <div className='homeCnt'>
                 <div style={{height: '20%'}}/>
+            
                 <div className='mx-6'>
                     <div className='factiodDiv'>
                       <TextLoop children={dummyFacts}/>
