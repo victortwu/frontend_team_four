@@ -4,7 +4,7 @@ import './App.css';
 import RecycleSymbols from './components/RecycleSymbols'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from './components/Home'
-
+import ManualBarcodeSearch from './components/ManualBarcodeSearch'
 import Map from './components/Map'
 import Navigation from './components/Navigation'
 import Search from './pages/search'
@@ -65,9 +65,9 @@ const greenHill = {
 
             </Route>
 
-            <Route exact path='/scanner'>
+            <Route exact path='/manualsearch'>
                 <div className='mainWrapper'>
-
+                    <ManualBarcodeSearch />
                 </div>
             </Route>
 
