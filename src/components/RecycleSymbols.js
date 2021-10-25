@@ -137,7 +137,7 @@ const RecycleSymbols = (props) => {
             <div className='infoAndBtnContainer'>
               <div className='infoBox'>
 
-                <h1 style={{fontWeight: '600', fontSize: '1.1rem'}}>Number {singleRecType.recycleNumber} | {singleRecType.recycleCode}</h1>
+                <h1 style={{fontWeight: '600', fontSize: '1.1rem'}}>Number {singleRecType.recycleNumber}{' * '}{singleRecType.recycleCode}</h1>
                 <span style={{marginTop: '2rem', fontStyle: 'italic', fontWeight: '200'}}>({singleRecType.plasticName})</span>
 
                 <table style={{position: 'absolute', bottom: '2rem'}}>
