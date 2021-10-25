@@ -37,6 +37,9 @@
 
 #scanBtnLink {
   position: relative;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
   background-image: url('../assets/Searchbox copy.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -44,7 +47,18 @@
   margin-bottom: 3rem;
   width: 100%;
   height: 4rem;
+  opacity: 1;
 }
+
+#inputLabel {
+  width: 100%;
+  opacity: 0;
+}
+
+#inputLabel > input[type='file'] {
+
+}
+
 
 #searchIcon {
   margin-left: 1.5rem;
