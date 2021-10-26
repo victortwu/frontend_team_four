@@ -2,7 +2,7 @@ import '../styleSheets/productPage.css'
 import Loading from './Loading'
 
 const ProductPage = props => {
-
+console.log(props.isLoading)
   return(
 
 
@@ -12,9 +12,8 @@ const ProductPage = props => {
 
           <div className='boxOne'>
             {
-              props.isLoading ?    <div style={{top: '4rem', left: '50%', transform: 'translateX(-50%)'}}>
-                                      <Loading/>
-                                    </div>
+              props.isLoading ?    <Loading/>
+
               : <>
               <p>Barcode: {`${props.barcodeString}`}</p>
 
