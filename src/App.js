@@ -39,7 +39,7 @@ function App() {
 
 const greenHill = {
   position: 'absolute',
-  marginTop: '850px',
+  marginTop: '53.125em',
   width: '100%',
   height: '100%',
 
@@ -51,7 +51,7 @@ const greenHill = {
   return (
     <BrowserRouter>
 
-      <main className='App'>
+      <main className='App text-center sm:text-left'>
       <div style={greenHill} id='backgroundTwo'/>
             { loadHomePage ? <Navigation/> : '' }
 

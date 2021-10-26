@@ -17,8 +17,8 @@
 
 
 #mapBtn, #materialsBtn {
-  width: 40vw;
-  height: 40vw;
+  width: 10vh;
+  height: 10vh;
 
   border-radius: 1rem;
 }

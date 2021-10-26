@@ -131,8 +131,8 @@ useEffect(()=> {
                               isLoading={isLoading}
                           />
 
-        :     <div className='homeCnt'>
-                <div style={{height: '20%'}}/>
+        :     <div className='homeCnt md:h-full mx-auto rounded-xl overflow-hidden md:max-w-3xl text-sm' >
+                
             
                 <div className='mx-6'>
                     <div className='factiodDiv'>
