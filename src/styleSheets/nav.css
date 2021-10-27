@@ -30,30 +30,39 @@
   color: white;
 }
 
-.dropMenu {
+.showMenu {
   position: absolute;
-  padding: 1rem;
-  background-color: rgba(196,206,212,.5);
-  top: 5rem;
-  right: 1rem;
-  width: 60%;
-  height: 15rem;
-  border-radius: .5rem;
-  animation: dropMenu .5s;
+  top: 4rem;
+  bottom: 0;
+  right: 0;
+  left: 0;
   z-index: 100;
+
 }
 
 .hideMenu {
   display: none;
 }
 
-
+.menuBody {
+  position: absolute;
+  padding: .2rem;
+  background-color: white;
+  top: 0;
+  right: 1rem;
+  width: 12rem;
+  border-radius: .2rem;
+  box-shadow: 0 0 1rem gray;
+  animation: dropMenu .5s;
+  z-index: 101;
+}
 
 .links {
   height: 100%;
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+
 }
 
 #navLink {
@@ -63,6 +72,15 @@
 
 .links > li {
   list-style: none;
+  text-align: left;
+  padding: .5rem;
+  box-shadow: 0 0 .1em gray;
+  color: var(--darkGr)
+}
+
+.links > li:active {
+  background-color: gray;
+  border: solid 1px black;
 }
 
 .hamburger {
@@ -118,6 +136,8 @@
   0% {transform: rotate(0)}
   100% {transform: rotate(360deg)}
 }
+
+/* For menu links */
 
 @keyframes dropMenu {
   0% {
