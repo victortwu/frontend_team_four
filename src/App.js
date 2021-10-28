@@ -42,7 +42,6 @@ const greenHill = {
   marginTop: '53.125em',
   width: '100%',
   height: '100%',
-
   animation: 'slideUp 2s forwards',
   animationDelay: '1s',
 }

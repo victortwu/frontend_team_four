@@ -58,6 +58,7 @@ const Home = (props) => {
     //credit: help from Daniel Edminster
     try {
 
+
       // fake data here for testing flow of app w/o wasting api calls
       const fakeScanData = {
         Successfull: true,
@@ -92,7 +93,9 @@ const Home = (props) => {
     catch (error) {
       console.log(error);
     }
+    
     setIsLoading(false)
+    alert("It seems we cannot locate your product based on this barcode");
   }
 
 
