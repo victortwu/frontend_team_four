@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import TextLoop from 'react-text-loop'
+import TextLoop from 'react-text-loop' //<--- will not respond to wrapping into div!!
 import ManualBarcodeSearch from './ManualBarcodeSearch'
 import ProductPage from './ProductPage'
 import RecycleSymbols from './RecycleSymbols'
@@ -144,7 +144,7 @@ console.log(factoid)
 
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                      <p><TextLoop children={factoid}/></p>
+                      {factoid[6]}
                     </div>
 
                     <div id='scanBtnLink' >
@@ -179,6 +179,9 @@ console.log(factoid)
 }
 
 export default Home
+
+//<TextLoop noWrap={false} children={factoid}/>
+
 
 // <Link to='/materials'>
 //

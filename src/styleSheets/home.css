@@ -12,13 +12,12 @@
   padding: 1rem;
   height: 8rem;
   color: var(--darkGr);
-
+  /* overflow-wrap: break-word; */
+  text-align: justify;
   border-radius: 1rem;
 }
 
-.factoidDiv > p {
-  word-wrap: normal;
-}
+
 
 #mapBtn, #materialsBtn {
   width: 10vh;
@@ -57,10 +56,6 @@
 #inputLabel {
   width: 100%;
   opacity: 0;
-}
-
-#inputLabel > input[type='file'] {
-
 }
 
 
