@@ -33,24 +33,24 @@ const Home = (props) => {
   }
 
   const closeRecMenu = () => {
-    setTimeout(()=> {
+    setTimeout(() => {
       setShowRecycleSymbols(false)
-    },1000)
+    }, 1000)
   }
 
-  const getProduct = async(code) => {
+  const getProduct = async (code) => {
 
-    let res  = await axios.get(`http://localhost:5000/upc/${code}`)
+    let res = await axios.get(`http://localhost:5000/upc/${code}`)
       .then(res => {
         console.log(res.data.result[code])
         setProductData(res.data.result[code])
       })
-      .catch(err => {console.error(err)})
-    }
+      .catch(err => { console.error(err) })
+  }
 
 
 
-  const getBarcode = async(param) => {
+  const getBarcode = async (param) => {
     setIsLoading(true)
     const file = param
 
@@ -73,7 +73,7 @@ const Home = (props) => {
       }
 
 
-// uncomment below to make actual api calls
+      // uncomment below to make actual api calls
 
       let req = await axios.request({
         method: 'POST',
@@ -96,8 +96,8 @@ const Home = (props) => {
 
       //getProduct(fakeScanData.RawText)
     }
-    catch(error) {
-            console.log(error);
+    catch (error) {
+      console.log(error);
     }
     setIsLoading(false)
   }
@@ -119,6 +119,7 @@ const Home = (props) => {
   //   setFactoid(dummyFElements[randomIndex])
   // }
 
+
 useEffect(()=> {
   axios.get(appBaseURL + '/factoid')
     .then(res=> {
@@ -129,49 +130,54 @@ useEffect(()=> {
 
 console.log(factoid)
   return(
+
     <>
 
-    {
+      {
         showProductPage ? <ProductPage
-                              closePrPg={closePrPg}
-                              barcodeString={barcodeString}
-                              productData={productData}
-                              isLoading={isLoading}
-                          />
+          closePrPg={closePrPg}
+          barcodeString={barcodeString}
+          productData={productData}
+          isLoading={isLoading}
+        />
 
-        :      <div className='homeCnt md:h-full mx-auto rounded-xl overflow-hidden md:max-w-3xl text-sm' >
-                <div style={{height: '20%'}}/>
+          : <div className='homeCnt md:h-full mx-auto rounded-xl overflow-hidden md:max-w-2xl text-sm ' >
+            <div style={{ height: '20%' }} />
+
 
                 <div className='mx-6'>
                     <div className='factiodDiv'>
                       <p><TextLoop children={factoid}/></p>
                     </div>
 
-                    <div id='scanBtnLink' >
 
-                        <label id='inputLabel' for='scanInput'>
-                          <input name='scanInput' ref={webCamRef} onChange={getInput} type="file" accept="image/*" capture="camera"/>
-                        </label>
-                    </div>
+              <div id='scanBtnLink'>
 
 
-                </div>
+                <label id='inputLabel' for='scanInput'>
+                  <input name='scanInput' ref={webCamRef} onChange={getInput} type="file" accept="image/*" capture="camera" />
+                </label>
+              </div>
 
-                <div className='flex justify-evenly mx-4'>
-                    <Link to='/map'>
-                    <div id='mapBtn'></div>
-                    </Link>
-
-                    <div  onClick={()=> setShowRecycleSymbols(!showRecycleSymbols)} id='materialsBtn'></div>
-
-                </div>
 
             </div>
-    }
 
-    {
-      showRecycleSymbols ? <RecycleSymbols closeRecMenu={closeRecMenu}/> : ''
-    }
+
+            <div className='flex flex-row justify-between items-center mx-4'>
+              <Link to='/map'>
+                <div id='mapBtn'></div>
+              </Link>
+
+              <div onClick={() => setShowRecycleSymbols(!showRecycleSymbols)} id='materialsBtn'></div>
+
+            </div>
+
+          </div>
+      }
+
+      {
+        showRecycleSymbols ? <RecycleSymbols closeRecMenu={closeRecMenu} /> : ''
+      }
 
 
     </>
