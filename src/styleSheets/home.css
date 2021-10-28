@@ -12,9 +12,13 @@
   padding: 1rem;
   height: 8rem;
   color: var(--darkGr);
+
   border-radius: 1rem;
 }
 
+.factoidDiv > p {
+  word-wrap: normal;
+}
 
 #mapBtn, #materialsBtn {
   width: 10vh;

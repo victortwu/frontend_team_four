@@ -8,6 +8,13 @@ import RecycleSymbols from './RecycleSymbols'
 
 import '../styleSheets/home.css'
 
+let appBaseURL = 'http://localhost:5000'
+
+// for now
+if (process.env.NODE_ENV !== 'developement') {
+  //appBaseURL = 'http://localhost:5000'
+}
+
 
 const Home = (props) => {
 
@@ -16,7 +23,7 @@ const Home = (props) => {
   const [productData, setProductData] = useState({})
   const [showProductPage, setShowProductPage] = useState(false)
   const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
-  const [factoid, setFactoid] = useState('')
+  const [factoid, setFactoid] = useState([])
 
   const webCamRef = useRef(null)
 
@@ -113,13 +120,14 @@ const Home = (props) => {
   // }
 
 useEffect(()=> {
-  // let intId = setInterval(()=> {
-  //   getFactiods()
-  // }, 2500)
-  // return clearInterval(intId)
+  axios.get(appBaseURL + '/factoid')
+    .then(res=> {
+      setFactoid(res.data[0].factoids)
+    })
+    .catch(err=> {console.error(err.message)})
 }, [])
 
-//console.log(factoid)
+console.log(factoid)
   return(
     <>
 
@@ -136,7 +144,7 @@ useEffect(()=> {
 
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                      <TextLoop children={dummyFacts}/>
+                      <p><TextLoop children={factoid}/></p>
                     </div>
 
                     <div id='scanBtnLink' >
