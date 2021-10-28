@@ -11,18 +11,42 @@ const Navigation =()=> {
     hamburgerButton.current.style = dropLinks ? 'animation: spinX .5s' : 'animation: spinE .5s'
   }
 
-  const toggleDropDown =()=> {
-    setDropLinks(!dropLinks)
+  const toggleDropDown =(e)=> {
+      setDropLinks(!dropLinks)
   }
 
-  const toggleNavClass = dropLinks ? 'dropMenu' : 'hideMenu'
+  const toggleNavClass = dropLinks ? 'showMenu' : 'hideMenu'
 
-  const home = <Link id='navLink' to='/'>Home</Link>
-  const scanner = <Link id='navLink' to='/scanner'>Scan Barcode</Link>
-  const map = <Link id='navLink' to='/map'>Map</Link>
-  const materials = <Link id='navLink' to='/materials'>Materials</Link>
+  const home = <Link
+                  onClick={()=>{
+                          toggleDropDown()
+                          spinHamburger()
+                              }} id='navLink' to='/'
+                                    >
+                        <span className='text-dkG'>Home</span>
+                    </Link>
+
+  const map = <Link
+                  onClick={()=>{
+                        toggleDropDown()
+                        spinHamburger()
+                      }}id='navLink' to='/map'
+                          >
+                    <span className='text-dkG'>Map</span>
+                </Link>
+
+  const materials = <Link
+                        onClick={()=>{
+                                toggleDropDown()
+                                spinHamburger()
+                                    }}id='navLink' to='/materials'
+                          >
+                      <span className='text-dkG'>Recycling Code #</span>
+                    </Link>
 
   return(
+
+    <>
     <nav className='navBar'>
       <div className='logoCnt'>
         <Link to='/'>
@@ -30,32 +54,7 @@ const Navigation =()=> {
         </Link>
       </div>
 
-      <div className={toggleNavClass}>
-        <ul className='links'>
 
-          <li onClick={()=> {
-              toggleDropDown()
-              spinHamburger()
-            }}>
-            {home}
-          </li>
-
-          <li onClick={()=> {
-              toggleDropDown()
-              spinHamburger()
-            }}>
-            {scanner}
-          </li>
-
-          <li onClick={()=> {
-              toggleDropDown()
-              spinHamburger()
-            }}>
-            {map}
-          </li>
-
-        </ul>
-      </div>
 
       <div ref={hamburgerButton} className='hamburger' onClick={()=> {
         toggleDropDown()
@@ -75,6 +74,58 @@ const Navigation =()=> {
           }
       </div>
     </nav>
+
+    <div onClick={()=> {setDropLinks(false)
+                        spinHamburger()}} className={toggleNavClass}>
+
+        <div onClick={(e)=> e.stopPropagation()} className='menuBody'>
+          <ul className='links'>
+
+            <li>
+              {home}
+            </li>
+
+            <li>
+              {materials}
+            </li>
+
+            <li>
+              {map}
+            </li>
+
+            <li onClick={()=> {
+                toggleDropDown()
+                spinHamburger()
+              }}>
+              Greener Choices
+            </li>
+
+            <li onClick={()=> {
+                toggleDropDown()
+                spinHamburger()
+              }}>
+              More Resources
+            </li>
+
+            <li onClick={()=> {
+                toggleDropDown()
+                spinHamburger()
+              }}>
+              About Us
+            </li>
+
+            <li onClick={()=> {
+                toggleDropDown()
+                spinHamburger()
+              }}>
+              Contact
+            </li>
+
+          </ul>
+        </div>
+
+    </div>
+    </>
   )
 }
 
