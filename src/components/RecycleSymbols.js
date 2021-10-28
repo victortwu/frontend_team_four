@@ -5,7 +5,7 @@ import { ReactComponent as XButton } from '../assets/Close Modal.svg'
 import { Link } from 'react-router-dom'
 import { ReactComponent as DropArrow } from '../assets/Drop-Down Arrow.svg'
 import RecTypeCard from './RecTypeCard'
-
+import TextLoop from 'react-text-loop'
 
 let appBaseURL = 'http://localhost:5000'
 
@@ -140,15 +140,15 @@ const RecycleSymbols = (props) => {
                 <h1 style={{fontWeight: '600', fontSize: '1.1rem'}}>Number {singleRecType.recycleNumber}{' * '}{singleRecType.recycleCode}</h1>
                 <span style={{marginTop: '2rem', fontStyle: 'italic', fontWeight: '200'}}>({singleRecType.plasticName})</span>
 
-                <table style={{position: 'absolute', bottom: '2rem'}}>
+                <table className='infoTable' style={{bottom: '6rem'}}>
                   <tbody>
                     <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
                       <td style={{fontWeight: '500', paddingBottom: '1rem'}}>IS USED IN...</td>
-                      <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}>{singleRecType.productExamples}</td>
+                      <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><TextLoop interval={1000} children={singleRecType.productExamples}/></td>
                     </tr>
                     <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
                       <td style={{fontWeight: '500', paddingTop: '1rem'}}>IS RECYCLED INTO:</td>
-                      <td style={{padding: '1rem'}}>{singleRecType.recycledExamples}</td>
+                      <td style={{padding: '1rem'}}><TextLoop interval={1500} children={singleRecType.recycledExamples}/></td>
                     </tr>
                   </tbody>
                 </table>
@@ -158,12 +158,12 @@ const RecycleSymbols = (props) => {
                     <table className='extenstionTable' style={{position: 'absolute', bottom: '2rem'}}>
                       <tbody>
                         <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
-                          <td style={{fontWeight: '500', paddingBottom: '1rem'}}>CAN YOU RECYCLE<br/>THIS NUMBER?</td>
-                          <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><span style={{fontWeight: '500'}}>{singleRecType.canRecycle}!</span> {singleRecType.recycleInfoOne}</td>
+                          <td style={{fontSize: '.7rem', fontWeight: '500', paddingBottom: '1rem'}}>CAN YOU RECYCLE<br/>THIS NUMBER?</td>
+                          <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><span style={{fontWeight: '500'}}>{singleRecType.canRecycle}</span> {singleRecType.recycleInfoOne}</td>
                         </tr>
                         <tr style={{fontSize: '.8rem'}}>
                           <td style={{fontWeight: '500', paddingTop: '1rem'}}>PICK UP?<br/>DROP OFF?</td>
-                          <td style={{paddingTop: '1rem', paddingLeft: '1rem'}}>Contact your local<br/>recycling company<br/>for more info</td>
+                          <td style={{fontSize: '.6rem', paddingTop: '1rem', paddingLeft: '1rem'}}>{singleRecType.recycleInfoTwo}</td>
                         </tr>
                       </tbody>
                     </table>
