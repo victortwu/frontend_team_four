@@ -8,6 +8,13 @@ import RecycleSymbols from './RecycleSymbols'
 
 import '../styleSheets/home.css'
 
+let appBaseURL = 'http://localhost:5000'
+
+// for now
+if (process.env.NODE_ENV !== 'developement') {
+  //appBaseURL = 'http://localhost:5000'
+}
+
 
 const Home = (props) => {
 
@@ -16,7 +23,7 @@ const Home = (props) => {
   const [productData, setProductData] = useState({})
   const [showProductPage, setShowProductPage] = useState(false)
   const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
-  const [factoid, setFactoid] = useState('')
+  const [factoid, setFactoid] = useState([])
 
   const webCamRef = useRef(null)
 
@@ -112,15 +119,18 @@ const Home = (props) => {
   //   setFactoid(dummyFElements[randomIndex])
   // }
 
-  useEffect(() => {
-    // let intId = setInterval(()=> {
-    //   getFactiods()
-    // }, 2500)
-    // return clearInterval(intId)
-  }, [])
 
-  //console.log(factoid)
-  return (
+useEffect(()=> {
+  axios.get(appBaseURL + '/factoid')
+    .then(res=> {
+      setFactoid(res.data[0].factoids)
+    })
+    .catch(err=> {console.error(err.message)})
+}, [])
+
+console.log(factoid)
+  return(
+
     <>
 
       {
@@ -134,10 +144,12 @@ const Home = (props) => {
           : <div className='homeCnt md:h-full mx-auto rounded-xl overflow-hidden md:max-w-2xl text-sm ' >
             <div style={{ height: '20%' }} />
 
-            <div className='mx-4'>
-              <div className='factiodDiv'>
-                <TextLoop children={dummyFacts} />
-              </div>
+
+                <div className='mx-6'>
+                    <div className='factiodDiv'>
+                      <p><TextLoop children={factoid}/></p>
+                    </div>
+
 
               <div id='scanBtnLink'>
 
