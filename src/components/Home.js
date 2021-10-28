@@ -23,7 +23,7 @@ const Home = (props) => {
   const [productData, setProductData] = useState({})
   const [showProductPage, setShowProductPage] = useState(false)
   const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
-  const [factoid, setFactoid] = useState([])
+  const [factoids, setFactoids] = useState([])
 
   const webCamRef = useRef(null)
 
@@ -108,26 +108,17 @@ const Home = (props) => {
     setShowProductPage(true)
   }
 
-  const dummyFacts = ['Banana', 'Orange', 'Apple', 'Mango']
-  // const dummyFElements = dummyFacts.map((el,i) => {
-  //   return <p key={el+i} id='factoidP'>{el}</p>
-  // })
-  // const getFactiods = () => { // CSS fadeIn animation not working
-  //
-  //   const randomIndex = Math.floor(Math.random() * (dummyFElements.length - 1))
-  //
-  //   setFactoid(dummyFElements[randomIndex])
-  // }
+
 
 useEffect(()=> {
   axios.get(appBaseURL + '/factoid')
     .then(res=> {
-      setFactoid(res.data[0].factoids)
+      setFactoids(res.data)
     })
     .catch(err=> {console.error(err.message)})
 }, [])
 
-console.log(factoid)
+console.log(factoids)
   return(
     <>
 
@@ -144,7 +135,7 @@ console.log(factoid)
 
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                      {factoid[6]}
+                        {factoids[0].factoid}
                     </div>
 
                     <div id='scanBtnLink' >
