@@ -127,6 +127,7 @@ console.log(factoids)
   return(
     <>
 
+
     {
         showProductPage ? <ProductPage
                               closePrPg={closePrPg}
