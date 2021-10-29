@@ -80,7 +80,7 @@ const RecycleSymbols = (props) => {
 
             <div onClick={()=> {  // refactor these functions like a nav drop down - issue #16
               slideMenuDown()
-              props.closeRecMenu()
+              props.closeRecMenu(950)
 
             }} id='xBtn'>
               <XButton/>

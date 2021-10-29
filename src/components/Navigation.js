@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import '../styleSheets/nav.css'
 
-const Navigation =()=> {
+const Navigation =(props)=> {
 
   const [dropLinks, setDropLinks] = useState(false)
   const hamburgerButton = useRef(null)
@@ -21,6 +21,7 @@ const Navigation =()=> {
                   onClick={()=>{
                           toggleDropDown()
                           spinHamburger()
+                          props.closeRecMenu(100)
                               }} id='navLink' to='/'
                                     >
                         <span className='text-dkG'>Home</span>
@@ -35,14 +36,17 @@ const Navigation =()=> {
                     <span className='text-dkG'>Map</span>
                 </Link>
 
-  const materials = <Link
-                        onClick={()=>{
+// this is a work around to get close button to work from all places
+// just OPENS the materials modal from here
+  const materials = <span className='text-dkG'
+                            onClick={()=>{
                                 toggleDropDown()
                                 spinHamburger()
-                                    }}id='navLink' to='/materials'
-                          >
-                      <span className='text-dkG'>Recycling Code #</span>
-                    </Link>
+                                props.setShowRecycleSymbols(true)
+                                }}
+                                >
+                      Recycling Code #
+                     </span>
 
   return(
 
@@ -50,7 +54,7 @@ const Navigation =()=> {
     <nav className='navBar'>
       <div className='logoCnt'>
         <Link to='/'>
-            <div className='appLogo'></div>
+            <div onClick={()=> props.closeRecMenu()} className='appLogo'></div>
         </Link>
       </div>
 
