@@ -109,6 +109,11 @@ const Home = (props) => {
   }
 
 
+  const factoidsMap = factoids.map(factoid => {
+    return <span key={factoid._id}>{factoid.factoid}</span>
+  })
+
+
 
 useEffect(()=> {
   axios.get(appBaseURL + '/factoid')
@@ -135,7 +140,7 @@ console.log(factoids)
 
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                        {factoids[0].factoid}
+                      {factoidsMap[0]}
                     </div>
 
                     <div id='scanBtnLink' >
