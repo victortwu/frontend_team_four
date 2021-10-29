@@ -78,9 +78,9 @@ const RecycleSymbols = (props) => {
           <span id='lineTwo'>recycle code</span>
 
 
-            <div onClick={()=> {
+            <div onClick={()=> {  // refactor these functions like a nav drop down - issue #16
               slideMenuDown()
-              props.closeRecMenu()
+              props.closeRecMenu(950)
 
             }} id='xBtn'>
               <XButton/>
@@ -105,7 +105,6 @@ const RecycleSymbols = (props) => {
             <div style={{justifySelf: 'center'}} className='recTypeBtn'>
               ?
             </div>
-
 
 
           </div>

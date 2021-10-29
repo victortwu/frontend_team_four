@@ -22,7 +22,7 @@ const Home = (props) => {
   const [barcodeString, setBarcodeString] = useState('')
   const [productData, setProductData] = useState({})
   const [showProductPage, setShowProductPage] = useState(false)
-  const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
+  //const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
   const [factoids, setFactoids] = useState([])
 
   const webCamRef = useRef(null)
@@ -32,11 +32,11 @@ const Home = (props) => {
     setShowProductPage(false)
   }
 
-  const closeRecMenu = () => {
-    setTimeout(()=> {
-      setShowRecycleSymbols(false)
-    },1000)
-  }
+  // const closeRecMenu = () => {
+  //   setTimeout(()=> {
+  //     setShowRecycleSymbols(false)
+  //   },1000)
+  // }
 
   const getProduct = async(code) => {
 
@@ -109,6 +109,11 @@ const Home = (props) => {
   }
 
 
+  const factoidsMap = factoids.map(factoid => {
+    return <span key={factoid._id}>{factoid.factoid}</span>
+  })
+
+
 
 useEffect(()=> {
   axios.get(appBaseURL + '/factoid')
@@ -135,7 +140,7 @@ console.log(factoids)
 
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                        {factoids[0].factoid}
+                      {factoidsMap[0]}
                     </div>
 
                     <div id='scanBtnLink' >
@@ -153,16 +158,14 @@ console.log(factoids)
                     <div id='mapBtn'></div>
                     </Link>
 
-                    <div  onClick={()=> setShowRecycleSymbols(!showRecycleSymbols)} id='materialsBtn'></div>
+                    <div  onClick={()=> props.setShowRecycleSymbols(true)} id='materialsBtn'></div>
 
                 </div>
 
             </div>
     }
 
-    {
-      showRecycleSymbols ? <RecycleSymbols closeRecMenu={closeRecMenu}/> : ''
-    }
+
 
 
     </>
@@ -170,6 +173,10 @@ console.log(factoids)
 }
 
 export default Home
+
+// {
+//   showRecycleSymbols ? <RecycleSymbols closeRecMenu={closeRecMenu}/> : ''
+// }
 
 //<TextLoop noWrap={false} children={factoid}/>
 

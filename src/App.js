@@ -27,6 +27,16 @@ import Display from './pages/display'
 function App() {
 
   const [loadHomePage, setLoadHomePage] = useState(false)
+  // this sets up materials menu almost like another nav
+  const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
+
+  // closes materials menu, passed down as props
+  const closeRecMenu = (ms) => {
+    setTimeout(()=> {
+      setShowRecycleSymbols(false)
+    }, ms)
+  }
+
 
   useEffect(() => {
 
@@ -53,14 +63,14 @@ const greenHill = {
 
       <main className='App text-center sm:text-left'>
       <div style={greenHill} id='backgroundTwo'/>
-            { loadHomePage ? <Navigation/> : '' }
+            { loadHomePage ? <Navigation closeRecMenu={closeRecMenu} setShowRecycleSymbols={setShowRecycleSymbols}/> : '' }
 
       <Switch>
 
             <Route exact path='/'>
 
                 <div className='mainWrapper'>
-                    { loadHomePage ? <Home/> : '' }
+                    { loadHomePage ? <Home closeRecMenu={closeRecMenu} setShowRecycleSymbols={setShowRecycleSymbols}/> : '' }
                 </div>
 
             </Route>
@@ -80,7 +90,7 @@ const greenHill = {
 
             <Route exact path='/materials'>
                 <div className='mainWrapper'>
-                    <RecycleSymbols/>
+
                 </div>
             </Route>
             <Route exact path='/search'>
@@ -95,6 +105,14 @@ const greenHill = {
             </Route>
 
         </Switch>
+
+        {
+          showRecycleSymbols ? <div className='mainWrapper'>
+                                  <RecycleSymbols closeRecMenu={closeRecMenu}/>
+                              </div>
+                              : ''
+        }
+
 
         </main>
 
