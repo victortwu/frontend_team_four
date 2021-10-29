@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as DropArrow } from '../assets/Drop-Down Arrow.svg'
 import RecTypeCard from './RecTypeCard'
 import TextLoop from 'react-text-loop'
+import { ReactComponent as WhiteArrowIcon } from '../assets/RecycleArrowsWhite.svg'
 
 let appBaseURL = 'http://localhost:5000'
 
@@ -103,7 +104,9 @@ const RecycleSymbols = (props) => {
             }
 
             <div style={{justifySelf: 'center'}} className='recTypeBtn'>
-              ?
+              <div style={{display: 'flex', flexDirection: 'column', justifyItems: 'space-evenly'}}>
+                <span>No</span> <span>recycle</span> <span>code</span>
+              </div>
             </div>
 
 
@@ -129,8 +132,9 @@ const RecycleSymbols = (props) => {
           </div>
 
           <div className='recLogoHeader'>
-                  {singleRecType.recycleNumber}
-                  <span>{singleRecType.recycleCode}</span>
+                  <span id='numHeaderSpan'>{singleRecType.recycleNumber}</span>
+                  <span id='codeHeaderSpan'>{singleRecType.recycleCode}</span>
+                  <div className='headerIconDiv'><WhiteArrowIcon/></div>
           </div>
 
             <div className='infoAndBtnContainer'>

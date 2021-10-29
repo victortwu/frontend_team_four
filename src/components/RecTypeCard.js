@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { ReactComponent as WhiteArrowIcon } from '../assets/RecycleArrowsWhite.svg'
+import { ReactComponent as GreenArrowIcon } from '../assets/RecycleArrowsGreen.svg'
 
 const RecTypeCard = props => {
 
   const [isActive, setIsActive] = useState(false)
   const style = isActive ? {gridArea: props.gridSpot, justifySelf: 'center', backgroundColor: 'var(--darkGr)', color: 'white'}
                         : {gridArea: props.gridSpot, justifySelf: 'center'}
+
 
   const activate = () => {
     setIsActive(true)
@@ -24,8 +27,15 @@ const RecTypeCard = props => {
               style={style}
               className='recTypeBtn'
               >
-              {props.type.recycleNumber}
-              <span>{props.type.recycleCode}</span>
+
+              <span id='numSpan'>{props.type.recycleNumber}</span>
+
+              <span id='codeSpan'>{props.type.recycleCode}</span>
+
+              <div className='recArrIconDiv'>
+                {isActive ? <WhiteArrowIcon/> : <GreenArrowIcon/>}
+              </div>
+
             </div>
   )
 }
