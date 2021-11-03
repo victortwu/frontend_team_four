@@ -136,7 +136,7 @@ useEffect(()=> {
     })
     .catch(err=> {console.error(err.message)})
     setTimeout(() => {checkFactoids()} , 2500)
-    
+
 }, [])
 
 console.log(factoidMap)
@@ -170,7 +170,7 @@ console.log(factoidMap)
 
                 </div>
 
-                <div className='flex justify-evenly mx-4'>
+                <div className='flex justify-between mx-6'>
                     <Link to='/map'>
                     <div id='mapBtn'></div>
                     </Link>
