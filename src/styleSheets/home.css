@@ -12,10 +12,11 @@
   padding: 1rem;
   height: 8rem;
   color: var(--darkGr);
-  /* overflow-wrap: break-word; */
+  /* white-space: normal; */
   text-align: justify;
   border-radius: 1rem;
 }
+
 
 
 

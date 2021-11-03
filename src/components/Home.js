@@ -24,6 +24,8 @@ const Home = (props) => {
   const [showProductPage, setShowProductPage] = useState(false)
   //const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
   const [factoids, setFactoids] = useState([])
+  const [factoidsLoaded, setFactoidsLoaded] = useState(false)
+
 
   const webCamRef = useRef(null)
 
@@ -109,9 +111,21 @@ const Home = (props) => {
   }
 
 
-  const factoidsMap = factoids.map(factoid => {
-    return <span key={factoid._id}>{factoid.factoid}</span>
+
+  const factoidMap =  factoids.map(factoid => {
+      return <p style={{whiteSpace: 'normal'}} key={factoid._id}>{factoid.factoid}</p>
   })
+
+  const checkFactoids = () => {
+    console.log('check factoids called')
+    if ( factoids === [] ) {
+      setFactoidsLoaded(false)
+    } else {
+      setFactoidsLoaded(true)
+    }
+  }
+
+
 
 
 
@@ -121,9 +135,11 @@ useEffect(()=> {
       setFactoids(res.data)
     })
     .catch(err=> {console.error(err.message)})
+    setTimeout(() => {checkFactoids()} , 2500)
+    
 }, [])
 
-console.log(factoids)
+console.log(factoidMap)
   return(
     <>
 
@@ -141,7 +157,7 @@ console.log(factoids)
 
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                      {factoidsMap[0]}
+                    {factoidsLoaded ? <TextLoop interval={7000} children={factoidMap} /> : ''}
                     </div>
 
                     <div id='scanBtnLink' >
