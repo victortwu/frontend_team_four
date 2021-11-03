@@ -1,20 +1,11 @@
 import { ReactComponent as RecIcon } from '../assets/Recycle Icon(white).svg'
-import '../styleSheets/productPage.css'
+import style from '../cssModules/loading.module.css'
 
 const Loading = () => {
 
-  const style = {
-      width: '10vw',
-      height: '10vw',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      animation: 'loadingSpin 1.5s linear infinite',
-  }
-
   return(
-    <div style={{width: '15vw', height: '15vw', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <div style={style}>
+    <div className={style.container}>
+        <div className={style.iconContainer}>
           <RecIcon/>
         </div>
         <span style={{marginTop: '.5rem', color: 'white'}}>Searching...</span>

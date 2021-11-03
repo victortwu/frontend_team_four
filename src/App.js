@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react'
 import './App.css';
 import RecycleSymbols from './components/RecycleSymbols'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from './components/Home'
-import ManualBarcodeSearch from './components/ManualBarcodeSearch'
+import Home from './pages/Home'
+//import ManualBarcodeSearch from './components/ManualBarcodeSearch'
+import ProductPage from './pages/ProductPage'
 import Map from './components/Map'
 import Navigation from './components/Navigation'
 import Search from './pages/search'
 import Display from './pages/display'
-
+import Loading from './components/Loading'
 
 //let appBaseURL = ''
 
@@ -77,8 +78,8 @@ const greenHill = {
 
             <Route exact path='/test'>
                 <div className='mainWrapper'>
-
-                    <ManualBarcodeSearch />
+                  <ProductPage/>
+                  <Loading/>
                 </div>
             </Route>
 

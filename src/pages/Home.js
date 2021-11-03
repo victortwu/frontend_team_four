@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import TextLoop from 'react-text-loop' //<--- will not respond to wrapping into div!!
-import ManualBarcodeSearch from './ManualBarcodeSearch'
+import TextLoop from 'react-text-loop' 
+import ManualBarcodeSearch from '../components/ManualBarcodeSearch'
 import ProductPage from './ProductPage'
-import RecycleSymbols from './RecycleSymbols'
+import RecycleSymbols from '../components/RecycleSymbols'
 
 import '../styleSheets/home.css'
 
