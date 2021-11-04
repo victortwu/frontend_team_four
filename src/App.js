@@ -100,7 +100,7 @@ const greenHill = {
             <Route exact path='/test'>
                 <div className='mainWrapper'>
                   <ProductPage/>
-                  <Loading/>
+                
                 </div>
             </Route>
 

@@ -5,10 +5,14 @@ const Loading = () => {
 
   return(
     <div className={style.container}>
-        <div className={style.iconContainer}>
-          <RecIcon/>
-        </div>
-        <span style={{marginTop: '.5rem', color: 'white'}}>Searching...</span>
+          <div className={style.subContainer}>
+              <div className={style.iconContainer}>
+                <RecIcon/>
+              </div>
+          </div>
+          <span style={{marginTop: '.5rem', color: 'white'}}>Searching...</span>
+
+
     </div>
   )
 }
