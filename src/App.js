@@ -77,6 +77,8 @@ const greenHill = {
                                   setShowProductPage={setShowProductPage}
                                   setBarcodeString={setBarcodeString}
                                   showProductPage={showProductPage}
+                                  productData={productData}
+                                  isLoading={isLoading}
                                   /> : '' }
 
       <Switch>
@@ -92,6 +94,8 @@ const greenHill = {
                                         setShowProductPage={setShowProductPage}
                                         setBarcodeString={setBarcodeString}
                                         showProductPage={showProductPage}
+                                        productData={productData}
+                                        isLoading={isLoading}
                                         /> : '' }
                 </div>
 
@@ -100,7 +104,7 @@ const greenHill = {
             <Route exact path='/test'>
                 <div className='mainWrapper'>
                   <ProductPage/>
-                
+
                 </div>
             </Route>
 

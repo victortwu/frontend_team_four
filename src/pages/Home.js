@@ -61,6 +61,7 @@ const Home = (props) => {
                               barcodeString={props.barcodeString}
                               productData={props.productData}
                               isLoading={props.isLoading}
+                              setShowRecycleSymbols={props.setShowRecycleSymbols}
                           />
 
         :      <div className='homeCnt md:h-full mx-auto rounded-xl overflow-hidden md:max-w-3xl text-sm' >

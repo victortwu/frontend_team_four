@@ -1,14 +1,37 @@
+
+import React, { useState, useEffect } from 'react'
 import style from '../cssModules/productCard.module.css'
 import { ReactComponent as Message } from '../assets/CTA - Yes, recyclable.svg'
 
-const ProductCard = () => {
+const ProductCard = (props) => {
+
+
+  const [image, setImage] = useState(false)
+
+  const checkForImage = () => {
+    if ( !props.productData.images ) {
+      setImage(false)
+    } else {
+      setImage(true)
+    }
+  }
+
+
+
+  useEffect(()=> {
+    setTimeout(()=> {
+      checkForImage()
+    }, 2000)
+  }, [])
+
+
   return(
     <div className={style.container}>
-      <img className={style.image} src='https://imgur.com/4KswcfD.jpg'/>
+    <img className={style.image} src={image ? props.productData.images[0] : ''} alt='no photo'/>
       <div className={style.content}>
-        <h4>Soda Bottle</h4>
+        <h4>{props.productData.brand}</h4>
         <div>
-        <span>Coca Cola 32 fl oz</span>
+        <span>{props.productData.title}</span>
         <div className={style.svgContainer}><Message/></div>
         </div>
       </div>

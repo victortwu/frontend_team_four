@@ -9,8 +9,9 @@ const Scanner = props => {
 
       let res  = await axios.get(`http://localhost:5000/upc/${code}`)
         .then(res => {
-          console.log(res.data.result[code])
-          props.setProductData(res.data.result[code])
+          console.log(res.data.items[0])
+          // console.log(res.data.result[code])
+          props.setProductData(res.data.items[0])
         })
         .catch(err => {console.error(err)})
       }
@@ -35,32 +36,32 @@ const Scanner = props => {
         const fakeScanData = {
           Successfull: true,
           BarcodeType: 'upc',
-          RawText: '0111222333446'
+          RawText: '012000171741'
         }
 
 
   // uncomment below to make actual api calls
 
-        let req = await axios.request({
-          method: 'POST',
-          url: 'https://api.cloudmersive.com/barcode/scan/image',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            "Apikey": process.env.REACT_APP_BCODEAPIKEY
-          },
-          data: formData
-        })
+        // let req = await axios.request({
+        //   method: 'POST',
+        //   url: 'https://api.cloudmersive.com/barcode/scan/image',
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data',
+        //     "Apikey": process.env.REACT_APP_BCODEAPIKEY
+        //   },
+        //   data: formData
+        // })
+        //
+        // console.log(req.data)
 
-        console.log(req.data)
 
-        // barcodeString gets set HERE
-        getProduct(req.data.RawText)
-        props.setBarcodeString(req.data.RawText)
+        // getProduct(req.data.RawText)
+        // props.setBarcodeString(req.data.RawText)
+        // props.setIsLoading(false)
+
+        getProduct(fakeScanData.RawText)
+        props.setBarcodeString(fakeScanData.RawText)
         props.setIsLoading(false)
-        //setBarcodeString(fakeScanData.RawText) // on real call --> req.data.RawText
-        //setResponse(fakeScanData.Successfull) //just to test
-
-        //getProduct(fakeScanData.RawText)
       }
       catch(error) {
               console.log(error);
