@@ -1,3 +1,27 @@
 .container {
-  background-color: blue;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.image {
+  width: 30vw;
+  height: 30vw;
+  border-radius: 1rem;
+}
+
+.content {
+  margin-left: .5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content > div > span {
+  font-size: .8rem;
+}
+
+.svgContainer {
+
 }

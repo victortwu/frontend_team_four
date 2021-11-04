@@ -26,15 +26,33 @@
 
 .box1 {
   grid-area: box1;
-  border: solid;
 }
 
 .box2 {
   grid-area: box2;
-  border: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--darkGr);
 }
 
 .box3 {
   grid-area: box3;
-  border: solid;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.mapBtn, .plasticTypeBtn {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 22vw;
+  height: 22vw;
+}
+
+.mapBtn {
+  background-image: url('../assets/Interaction Menu.svg');
+}
+
+.plasticTypeBtn {
+  background-image: url('../assets/PlasticTypeButton.svg');
 }

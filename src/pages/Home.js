@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import TextLoop from 'react-text-loop' 
+import TextLoop from 'react-text-loop'
 import ManualBarcodeSearch from '../components/ManualBarcodeSearch'
 import ProductPage from './ProductPage'
 import RecycleSymbols from '../components/RecycleSymbols'
@@ -162,8 +162,8 @@ console.log(factoidMap)
 
                     <div id='scanBtnLink' >
 
-                        <label id='inputLabel' for='scanInput'>
-                          <input name='scanInput' ref={webCamRef} onChange={getInput} type="file" accept="image/*" capture="camera"/>
+                        <label id='inputLabel'>
+                          <input ref={webCamRef} onChange={getInput} type="file" accept="image/*" capture="camera"/>
                         </label>
                     </div>
 
