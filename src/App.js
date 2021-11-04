@@ -27,6 +27,11 @@ import Loading from './components/Loading'
 
 function App() {
 
+  const [isLoading, setIsLoading] = useState(false)
+  const [barcodeString, setBarcodeString] = useState('')
+  const [productData, setProductData] = useState({})
+  const [showProductPage, setShowProductPage] = useState(false)
+
   const [loadHomePage, setLoadHomePage] = useState(false)
   // this sets up materials menu almost like another nav
   const [showRecycleSymbols, setShowRecycleSymbols] = useState(false)
@@ -64,14 +69,30 @@ const greenHill = {
 
       <main className='App text-center sm:text-left'>
       <div style={greenHill} id='backgroundTwo'/>
-            { loadHomePage ? <Navigation closeRecMenu={closeRecMenu} setShowRecycleSymbols={setShowRecycleSymbols}/> : '' }
+            { loadHomePage ? <Navigation
+                                  closeRecMenu={closeRecMenu}
+                                  setShowRecycleSymbols={setShowRecycleSymbols}
+                                  setProductData={setProductData}
+                                  setIsLoading={setIsLoading}
+                                  setShowProductPage={setShowProductPage}
+                                  setBarcodeString={setBarcodeString}
+                                  showProductPage={showProductPage}
+                                  /> : '' }
 
       <Switch>
 
             <Route exact path='/'>
 
                 <div className='mainWrapper'>
-                    { loadHomePage ? <Home closeRecMenu={closeRecMenu} setShowRecycleSymbols={setShowRecycleSymbols}/> : '' }
+                    { loadHomePage ? <Home
+                                        closeRecMenu={closeRecMenu}
+                                        setShowRecycleSymbols={setShowRecycleSymbols}
+                                        setProductData={setProductData}
+                                        setIsLoading={setIsLoading}
+                                        setShowProductPage={setShowProductPage}
+                                        setBarcodeString={setBarcodeString}
+                                        showProductPage={showProductPage}
+                                        /> : '' }
                 </div>
 
             </Route>

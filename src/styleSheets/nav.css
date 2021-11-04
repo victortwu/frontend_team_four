@@ -65,6 +65,17 @@
 
 }
 
+.hiddenScanner {
+  position: relative;
+}
+
+.scannerLabel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+
 #navLink {
   text-decoration: none;
   color: white;

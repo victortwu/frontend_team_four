@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import Scanner from '../components/Scanner'
 import '../styleSheets/nav.css'
 
 const Navigation =(props)=> {
@@ -21,6 +22,7 @@ const Navigation =(props)=> {
                   onClick={()=>{
                           toggleDropDown()
                           spinHamburger()
+                          props.setShowProductPage(false)
                           props.closeRecMenu(100)
                               }} id='navLink' to='/'
                                     >
@@ -48,13 +50,35 @@ const Navigation =(props)=> {
                       Recycling Code #
                      </span>
 
+  const scanProduct = <div className='hiddenScanner text-dkG'
+                              onClick={()=>{
+                                  toggleDropDown()
+                                  spinHamburger()
+                                  //props.setShowRecycleSymbols(true)
+                                  }}
+                                  >
+                                  Scan Product
+                                  <label className='scannerLabel'>
+                                    <Scanner
+                                        setProductData={props.setProductData}
+                                        setIsLoading={props.setIsLoading}
+                                        setShowProductPage={props.setShowProductPage}
+                                        setBarcodeString={props.setBarcodeString}
+
+                                    />
+                                  </label>
+                                </div>
+
   return(
 
     <>
     <nav className='navBar'>
       <div className='logoCnt'>
         <Link to='/'>
-            <div onClick={()=> props.closeRecMenu()} className='appLogo'></div>
+            <div onClick={()=> {
+                                props.closeRecMenu()
+                                props.setShowProductPage(false)
+                                }} className='appLogo'></div>
         </Link>
       </div>
 
@@ -87,6 +111,10 @@ const Navigation =(props)=> {
 
             <li>
               {home}
+            </li>
+
+            <li>
+              {scanProduct}
             </li>
 
             <li>
