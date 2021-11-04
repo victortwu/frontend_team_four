@@ -6,6 +6,7 @@ const ProductPage = props => {
 
   return(
           <div className={`${style.container} shadow-lg`}>
+          <button className={style.closeBtn} onClick={()=> {props.setShowProductPage(false)}}>X</button>
             <div className={style.grid}>
               <div className={style.box1}>
                   <ProductCard/>
@@ -24,6 +25,9 @@ const ProductPage = props => {
 }
 
 export default ProductPage
+// onClick={props.setShowProductPage(false)}
+
+
 // {
 //   props.isLoading ?    <Loading/>
 //

@@ -56,3 +56,13 @@
 .plasticTypeBtn {
   background-image: url('../assets/PlasticTypeButton.svg');
 }
+
+.closeBtn {
+  position: absolute;
+  top: -2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+  background: rgba(255,255,255,.4);
+  border-radius: 50%;
+}
