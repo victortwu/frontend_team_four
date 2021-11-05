@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Map, TileLayer, Marker } from 'react-leaflet'
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import '../App.css'
 import style from '../cssModules/map.module.css'
 import { ReactComponent as ListIcon } from '../assets/listButton.svg'
@@ -12,6 +12,7 @@ const MapPage = () => {
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
   const [recCenters, setRecCenters] = useState([])
+  const [activeCenter, setActiveCenter] = useState(null)
 
     const getLocation = () => {
 
@@ -38,7 +39,7 @@ const MapPage = () => {
 
 
     const listRecLocations = () => {
-      console.log('List rec called')
+      console.log(recCenters)
 
     }
 
@@ -56,9 +57,23 @@ const MapPage = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Marker position={[latitude, longitude]} />
+
           {recCenters.map(loc=> (
-            <Marker key={loc.location_id} position={[loc.latitude, loc.longitude]} />
+
+            <Marker
+                key={loc.location_id}
+                position={[loc.latitude, loc.longitude]}
+                onClick={()=> setActiveCenter(loc)}
+            />
           ))}
+
+          {activeCenter && (
+            <Popup position={[activeCenter.latitude, activeCenter.longitude]} onClose={()=> {setActiveCenter(null)}}>
+              <h2>{activeCenter.description}</h2>
+              <span>{activeCenter.distance} miles</span>
+            </Popup>
+          )}
+
       </Map>
         <div onClick={()=> listRecLocations()} className={`${style.listBtn} shadow-lg`}>
           <div style={{marginTop: '.2rem'}}>
