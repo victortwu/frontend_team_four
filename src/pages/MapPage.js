@@ -25,6 +25,11 @@ const MapPage = () => {
             setLatitude(position.coords.latitude)
             setLongitude(position.coords.longitude)
 
+            axios.get(`http://localhost:5000/locations/${position.coords.latitude}/${position.coords.longitude}`)
+              .then(res=> {
+                setRecCenters(res.data.result)
+              })
+              .catch(err=> {console.error(err.message)})
           }, () => {
             console.log('Unable to retrieve your location')
           })
@@ -34,23 +39,14 @@ const MapPage = () => {
 
     const listRecLocations = () => {
       console.log('List rec called')
-      
+
     }
-
-
 
   useEffect(()=> {
     getLocation()
-    axios.get(`http://localhost:5000/locations/${latitude}/${longitude}`)
-      .then(res=> {
-        console.log(res)
-        setRecCenters(res.data.result)
-      })
-      .catch(err=> {console.error(err.message)})
   }, [])
 
-  console.log(`lat: ${latitude}, long: ${longitude}`)
-  console.log(recCenters)
+
   return(
     <div className={style.container}>
 
