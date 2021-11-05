@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from './pages/Home'
 //import ManualBarcodeSearch from './components/ManualBarcodeSearch'
 import ProductPage from './pages/ProductPage'
-import Map from './components/Map'
+import MapPage from './pages/MapPage'
 import Navigation from './components/Navigation'
 import Search from './pages/search'
 import Display from './pages/display'
@@ -112,7 +112,7 @@ const greenHill = {
 
             <Route exact path='/map'>
                 <div className='mainWrapper'>
-                    <Map/>
+                    <MapPage/>
                 </div>
             </Route>
 
