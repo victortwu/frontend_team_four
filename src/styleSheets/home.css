@@ -15,7 +15,9 @@
   /* white-space: normal; */
   text-align: justify;
   border-radius: 1rem;
+  animation: fadeIn 2.5s;
 }
+
 
 #mapBtn, #materialsBtn {
   width: 18vh;

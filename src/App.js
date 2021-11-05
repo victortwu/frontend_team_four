@@ -28,7 +28,7 @@ import Loading from './components/Loading'
 function App() {
 
   const [isLoading, setIsLoading] = useState(false)
-  const [barcodeString, setBarcodeString] = useState('')
+  const [barcodeData, setBarcodeData] = useState({})
   const [productData, setProductData] = useState({})
   const [showProductPage, setShowProductPage] = useState(false)
 
@@ -75,9 +75,10 @@ const greenHill = {
                                   setProductData={setProductData}
                                   setIsLoading={setIsLoading}
                                   setShowProductPage={setShowProductPage}
-                                  setBarcodeString={setBarcodeString}
+                                  setBarcodeData={setBarcodeData}
                                   showProductPage={showProductPage}
                                   productData={productData}
+                                  barcodeData={barcodeData}
                                   isLoading={isLoading}
                                   /> : '' }
 
@@ -92,9 +93,10 @@ const greenHill = {
                                         setProductData={setProductData}
                                         setIsLoading={setIsLoading}
                                         setShowProductPage={setShowProductPage}
-                                        setBarcodeString={setBarcodeString}
+                                        setBarcodeData={setBarcodeData}
                                         showProductPage={showProductPage}
                                         productData={productData}
+                                        barcodeData={barcodeData}
                                         isLoading={isLoading}
                                         /> : '' }
                 </div>

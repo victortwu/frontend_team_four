@@ -58,7 +58,7 @@ const Home = (props) => {
     {
         props.showProductPage ? <ProductPage
                               setShowProductPage={props.setShowProductPage}
-                              barcodeString={props.barcodeString}
+                              barcodeData={props.barcodeData}
                               productData={props.productData}
                               isLoading={props.isLoading}
                               setShowRecycleSymbols={props.setShowRecycleSymbols}
@@ -79,7 +79,7 @@ const Home = (props) => {
                               setProductData={props.setProductData}
                               setIsLoading={props.setIsLoading}
                               setShowProductPage={props.setShowProductPage}
-                              setBarcodeString={props.setBarcodeString}
+                              setBarcodeData={props.setBarcodeData}
                           />
                         </label>
                     </div>

@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   border-radius: 1rem;
+  animation: fadeIn 1s;
 }
 
 .grid{
@@ -65,4 +66,9 @@
   color: white;
   background: rgba(255,255,255,.4);
   border-radius: 50%;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }

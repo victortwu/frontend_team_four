@@ -9,11 +9,12 @@ const Scanner = props => {
 
       let res  = await axios.get(`http://localhost:5000/upc/${code}`)
         .then(res => {
+          console.log(res.data.message)
           console.log(res.data.items[0])
           // console.log(res.data.result[code])
           props.setProductData(res.data.items[0])
         })
-        .catch(err => {console.error(err)})
+        .catch(err => {console.error(err.message)})
       }
 
 
@@ -36,7 +37,8 @@ const Scanner = props => {
         const fakeScanData = {
           Successfull: true,
           BarcodeType: 'upc',
-          RawText: '012000171741'
+          RawText: '012000171741',
+          //RawText: '012'
         }
 
 
@@ -53,14 +55,14 @@ const Scanner = props => {
         // })
         //
         // console.log(req.data)
-
-
+        //
+        //
         // getProduct(req.data.RawText)
-        // props.setBarcodeString(req.data.RawText)
+        // props.setBarcodeData(req.data)
         // props.setIsLoading(false)
 
         getProduct(fakeScanData.RawText)
-        props.setBarcodeString(fakeScanData.RawText)
+        props.setBarcodeData(fakeScanData)
         props.setIsLoading(false)
       }
       catch(error) {

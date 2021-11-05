@@ -16,20 +16,21 @@ const ProductCard = (props) => {
     }
   }
 
-
+  const isProduct = !props.productData.brand ? false : true
 
   useEffect(()=> {
     setTimeout(()=> {
       checkForImage()
     }, 2000)
+
   }, [])
 
-
+console.log(isProduct)
   return(
     <div className={style.container}>
     <img className={style.image} src={image ? props.productData.images[0] : ''} alt='no photo'/>
       <div className={style.content}>
-        <h4>{props.productData.brand}</h4>
+        {isProduct ? <h4>{props.productData.brand}</h4> : <h4 style={{color: 'red'}}>Product not found.</h4>}
         <div>
         <span>{props.productData.title}</span>
         <div className={style.svgContainer}><Message/></div>
