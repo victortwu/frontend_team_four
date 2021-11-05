@@ -63,7 +63,7 @@ const Navigation =(props)=> {
                                         setProductData={props.setProductData}
                                         setIsLoading={props.setIsLoading}
                                         setShowProductPage={props.setShowProductPage}
-                                        setBarcodeString={props.setBarcodeString}
+                                        setBarcodeData={props.setBarcodeData}
 
                                     />
                                   </label>
