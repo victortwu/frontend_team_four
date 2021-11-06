@@ -4,6 +4,8 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import '../App.css'
 import style from '../cssModules/map.module.css'
 import { ReactComponent as ListIcon } from '../assets/listButton.svg'
+import { ReactComponent as MapIcon } from '../assets/Map Icon.svg'
+import { ReactComponent as AcceptsIcon } from '../assets/Recycling Items Accepted Bar.svg'
 
 
 
@@ -69,7 +71,7 @@ const MapPage = () => {
     getLocations()
   }, [])
 
-  console.log(recCenterData)
+
   return(
     <div className={style.container}>
 
@@ -78,7 +80,7 @@ const MapPage = () => {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[latitude, longitude]} />
+        
 
           {recCenters.map(loc=> (
 
@@ -99,7 +101,7 @@ const MapPage = () => {
       </Map>
         <div onClick={()=> listRecLocations()} className={`${style.listBtn} shadow-lg`}>
           <div style={{marginTop: '.2rem'}}>
-            <ListIcon/>
+            {showList ? <MapIcon/> : <ListIcon/>}
           </div>
         </div>
 
@@ -107,9 +109,12 @@ const MapPage = () => {
         <div className={style.listContainer}>
         {  recCenters.map((loc, i)=> {
             return(
-              <div key={i + loc.location_id}>
+              <div className={`${style.card} shadow-md transition duration-500 ease-in-out`} key={i + loc.location_id}>
                 <h1>{recCenterData[loc.location_id]?.description}</h1>
                 <span>{recCenterData[loc.location_id]?.address}</span>
+                <div className={style.cardSymbols}>
+                  <AcceptsIcon/>
+                </div>
               </div>
             )
           })}
