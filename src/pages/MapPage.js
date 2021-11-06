@@ -14,8 +14,8 @@ const MapPage = () => {
   const [recCenters, setRecCenters] = useState([]) // need this?? Yes bc it has ids
   const [recCenterData, setRecCenterData] = useState([])
   const [activeCenter, setActiveCenter] = useState(null)
-  const [locationIds, setLocationIds] = useState([])
-  
+  const [showList, setShowList] = useState(false)
+
 
 
     const getDetails = (query) => {
@@ -28,7 +28,7 @@ const MapPage = () => {
     }
 
 
-    const getLocation = () => {
+    const getLocations = () => {
 
         if (!navigator.geolocation) {
           console.log('Geolocation is not supported by your browser')
@@ -60,13 +60,13 @@ const MapPage = () => {
       }
 
 
-    const listRecLocations = () => {
-      console.log(recCenters)
 
+    const listRecLocations = () => {
+        setShowList(!showList)
     }
 
   useEffect(()=> {
-    getLocation()
+    getLocations()
   }, [])
 
   console.log(recCenterData)
@@ -85,14 +85,14 @@ const MapPage = () => {
             <Marker
                 key={loc.location_id}
                 position={[loc.latitude, loc.longitude]}
-                onClick={()=> setActiveCenter(loc)}
+                onClick={()=> setActiveCenter(recCenterData[loc.location_id])}
             />
           ))}
 
           {activeCenter && (
             <Popup position={[activeCenter.latitude, activeCenter.longitude]} onClose={()=> {setActiveCenter(null)}}>
               <h2>{activeCenter.description}</h2>
-              <span>{activeCenter.distance} miles</span>
+              <span>{activeCenter.address}</span>
             </Popup>
           )}
 
@@ -102,6 +102,19 @@ const MapPage = () => {
             <ListIcon/>
           </div>
         </div>
+
+      { showList &&
+        <div className={style.listContainer}>
+        {  recCenters.map((loc, i)=> {
+            return(
+              <div key={i + loc.location_id}>
+                <h1>{recCenterData[loc.location_id]?.description}</h1>
+                <span>{recCenterData[loc.location_id]?.address}</span>
+              </div>
+            )
+          })}
+        </div> }
+
     </div>
   )
 }
