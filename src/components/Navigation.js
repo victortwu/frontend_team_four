@@ -50,6 +50,8 @@ const Navigation =(props)=> {
                       Recycling Code #
                      </span>
 
+// another hacked together way to get to the home/productpage
+
   let history = useHistory()
 
   const goHome = () => {

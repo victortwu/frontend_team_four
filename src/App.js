@@ -10,7 +10,7 @@ import MapPage from './pages/MapPage'
 import Navigation from './components/Navigation'
 import Search from './pages/search'
 import Display from './pages/display'
-import Loading from './components/Loading'
+
 
 //let appBaseURL = ''
 

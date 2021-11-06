@@ -11,8 +11,22 @@ const MapPage = () => {
 
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
-  const [recCenters, setRecCenters] = useState([])
+  const [recCenters, setRecCenters] = useState([]) // need this?? Yes bc it has ids
+  const [recCenterData, setRecCenterData] = useState([])
   const [activeCenter, setActiveCenter] = useState(null)
+  const [locationIds, setLocationIds] = useState([])
+  
+
+
+    const getDetails = (query) => {
+      axios.get(`http://localhost:5000/details/${query}`)
+        .then(res => {
+          console.log(res)
+          setRecCenterData(res.data.result)
+        })
+        .catch(err => { console.error(err.message) })
+    }
+
 
     const getLocation = () => {
 
@@ -29,12 +43,20 @@ const MapPage = () => {
             axios.get(`http://localhost:5000/locations/${position.coords.latitude}/${position.coords.longitude}`)
               .then(res=> {
                 setRecCenters(res.data.result)
+                let tempArr = []
+
+                res.data.result.map(loc=> {
+                  tempArr.push(`&location_id[]=${loc.location_id}`)
+                })
+                getDetails(tempArr.join(''))
+
               })
               .catch(err=> {console.error(err.message)})
           }, () => {
             console.log('Unable to retrieve your location')
           })
         }
+
       }
 
 
@@ -47,7 +69,7 @@ const MapPage = () => {
     getLocation()
   }, [])
 
-
+  console.log(recCenterData)
   return(
     <div className={style.container}>
 
