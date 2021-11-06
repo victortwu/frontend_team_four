@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Scanner from '../components/Scanner'
 import '../styleSheets/nav.css'
 
@@ -50,11 +50,18 @@ const Navigation =(props)=> {
                       Recycling Code #
                      </span>
 
+  let history = useHistory()
+
+  const goHome = () => {
+    history.push('/')
+  }
+
   const scanProduct = <div className='hiddenScanner text-dkG'
                               onClick={()=>{
                                   toggleDropDown()
                                   spinHamburger()
-                                  //props.setShowRecycleSymbols(true)
+                                  goHome()
+                                  props.setShowProductPage(true)
                                   }}
                                   >
                                   Scan Product
