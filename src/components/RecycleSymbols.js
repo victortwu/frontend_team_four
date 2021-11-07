@@ -5,6 +5,7 @@ import { ReactComponent as XButton } from '../assets/Close Modal.svg'
 import { Link } from 'react-router-dom'
 import { ReactComponent as DropArrow } from '../assets/Drop-Down Arrow.svg'
 import RecTypeCard from './RecTypeCard'
+import GreenerChoices from './GreenerChoices'
 import TextLoop from 'react-text-loop'
 import { ReactComponent as WhiteArrowIcon } from '../assets/RecycleArrowsWhite.svg'
 
@@ -199,13 +200,15 @@ const RecycleSymbols = (props) => {
                     <Link onClick={()=> {props.closeRecMenu()}} to='/map'>
                       <div className='linkToMapBtn'/>
                     </Link>
-                    
+
                 </div>
 
               </div>
 
             </div>
-
+                <div style={{height: '90%', display: 'flex', flexDirection: 'column-reverse'}}>
+                  <GreenerChoices/>
+                </div>
           </div> : ''
         }
 
