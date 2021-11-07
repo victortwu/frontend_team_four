@@ -5,11 +5,11 @@ import GreenerChoices from '../components/GreenerChoices'
 import style from '../cssModules/productPage.module.css'
 
 const ProductPage = props => {
-console.log(props.productData)
 
 
 
-console.log(props.isLoading)
+
+
   return(
         <div className={style.parentContainer}>
           <div className={`${style.container} shadow-lg`}>
@@ -47,5 +47,3 @@ console.log(props.isLoading)
 }
 
 export default ProductPage
-// onClick={props.setShowProductPage(false)}
-//

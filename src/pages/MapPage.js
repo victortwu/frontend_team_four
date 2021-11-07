@@ -25,7 +25,7 @@ const MapPage = () => {
     const getDetails = (query) => {
       axios.get(`${url}/details/${query}`)
         .then(res => {
-          console.log(res)
+          
           setRecCenterData(res.data.result)
         })
         .catch(err => { console.error(err.message) })

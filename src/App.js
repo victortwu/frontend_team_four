@@ -4,24 +4,12 @@ import './App.css';
 import RecycleSymbols from './components/RecycleSymbols'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from './pages/Home'
-//import ManualBarcodeSearch from './components/ManualBarcodeSearch'
+
 import ProductPage from './pages/ProductPage'
 import MapPage from './pages/MapPage'
 import Navigation from './components/Navigation'
-import Search from './pages/search'
-import Display from './pages/display'
 
 
-//let appBaseURL = ''
-
-// for now
-
-// if (process.env.NODE_ENV === 'developement') {
-//   appBaseURL = 'http://localhost:5000'
-// } else {
-//   console.log(process.env.NODE_ENV)
-//   appBaseURL = 'http://localhost:5000'
-// }
 
 
 
@@ -121,16 +109,8 @@ const greenHill = {
 
                 </div>
             </Route>
-            <Route exact path='/search'>
-                <div className='mainWrapper'>
-                    <Search/>
-                </div>
-            </Route>
-            <Route exact path='/display'>
-                <div className='mainWrapper'>
-                    <Display/>
-                </div>
-            </Route>
+
+
 
         </Switch>
 

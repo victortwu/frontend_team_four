@@ -65,7 +65,7 @@ const RecycleSymbols = (props) => {
 
 
 
-//console.log(singleRecType)
+
 
   return(
       <>

@@ -25,7 +25,7 @@ const ProductCard = (props) => {
 
   }, [])
 
-console.log(isProduct)
+
   return(
     <div className={style.container}>
     <img className={style.image} src={image ? props.productData.images[0] : ''} alt='no photo'/>

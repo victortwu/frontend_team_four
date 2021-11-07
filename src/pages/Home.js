@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import TextLoop from 'react-text-loop'
 import Scanner from '../components/Scanner'
-import ManualBarcodeSearch from '../components/ManualBarcodeSearch'
 import ProductPage from './ProductPage'
 import RecycleSymbols from '../components/RecycleSymbols'
 import { config } from '../Constants'
@@ -24,7 +23,7 @@ const Home = (props) => {
     })
 
     const checkFactoids = () => {
-      console.log('check factoids called')
+
       if ( factoids === [] ) {
         setFactoidsLoaded(false)
       } else {
@@ -46,7 +45,7 @@ const Home = (props) => {
 
     }, [])
 
-console.log(url)
+
   return(
     <>
 
