@@ -73,7 +73,7 @@ const RecycleSymbols = (props) => {
 
   return(
       <>
-        <div ref={recMenuRef} className='gridWrapper shadow-2xl'>
+        <div ref={recMenuRef} className='gridWrapper'>
 
             <div onClick={()=> {
               slideMenuDown()

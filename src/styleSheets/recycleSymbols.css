@@ -8,6 +8,7 @@
   top: 2rem;
   height: 36rem;
   border-radius: 2rem;
+  box-shadow: 0 0 10rem 1rem var(--darkGr);
   animation: slideUp2 1s;
 }
 

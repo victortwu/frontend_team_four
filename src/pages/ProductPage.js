@@ -1,6 +1,7 @@
 import { Link }  from 'react-router-dom'
 import Loading from '../components/Loading'
 import ProductCard from '../components/ProductCard'
+import GreenerChoices from '../components/GreenerChoices'
 import style from '../cssModules/productPage.module.css'
 
 const ProductPage = props => {
@@ -10,6 +11,7 @@ console.log(props.productData)
 
 console.log(props.isLoading)
   return(
+        <div className={style.parentContainer}>
           <div className={`${style.container} shadow-lg`}>
           <button className={style.closeBtn} onClick={()=> {props.setShowProductPage(false)}}>X</button>
             <div className={style.grid}>
@@ -32,6 +34,15 @@ console.log(props.isLoading)
 
             </div>
           </div>
+
+          <div className={style.containerTwo}>
+
+            <GreenerChoices/>
+
+
+          </div>
+
+        </div>
         )
 }
 
