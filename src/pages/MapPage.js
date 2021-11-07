@@ -6,7 +6,9 @@ import style from '../cssModules/map.module.css'
 import { ReactComponent as ListIcon } from '../assets/listButton.svg'
 import { ReactComponent as MapIcon } from '../assets/Map Icon.svg'
 import { ReactComponent as AcceptsIcon } from '../assets/Recycling Items Accepted Bar.svg'
+import { config } from '../Constants'
 
+const url = config.url.baseUrl
 
 
 const MapPage = () => {
@@ -21,7 +23,7 @@ const MapPage = () => {
 
 
     const getDetails = (query) => {
-      axios.get(`http://localhost:5000/details/${query}`)
+      axios.get(`${url}/details/${query}`)
         .then(res => {
           console.log(res)
           setRecCenterData(res.data.result)
@@ -42,7 +44,7 @@ const MapPage = () => {
             setLatitude(position.coords.latitude)
             setLongitude(position.coords.longitude)
 
-            axios.get(`http://localhost:5000/locations/${position.coords.latitude}/${position.coords.longitude}`)
+            axios.get(`${url}/locations/${position.coords.latitude}/${position.coords.longitude}`)
               .then(res=> {
                 setRecCenters(res.data.result)
                 let tempArr = []
@@ -80,7 +82,7 @@ const MapPage = () => {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-        
+
 
           {recCenters.map(loc=> (
 

@@ -6,15 +6,11 @@ import Scanner from '../components/Scanner'
 import ManualBarcodeSearch from '../components/ManualBarcodeSearch'
 import ProductPage from './ProductPage'
 import RecycleSymbols from '../components/RecycleSymbols'
-
+import { config } from '../Constants'
 import '../styleSheets/home.css'
 
-let appBaseURL = 'http://localhost:5000'
+const url = config.url.baseUrl
 
-// for now
-if (process.env.NODE_ENV !== 'developement') {
-  //appBaseURL = 'http://localhost:5000'
-}
 
 
 const Home = (props) => {
@@ -41,7 +37,7 @@ const Home = (props) => {
 
 
     useEffect(()=> {
-      axios.get(appBaseURL + '/factoid')
+      axios.get(url + '/factoid')
         .then(res=> {
           setFactoids(res.data)
         })
@@ -50,7 +46,7 @@ const Home = (props) => {
 
     }, [])
 
-
+console.log(url)
   return(
     <>
 

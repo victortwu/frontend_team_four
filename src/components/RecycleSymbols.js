@@ -8,15 +8,10 @@ import RecTypeCard from './RecTypeCard'
 import GreenerChoices from './GreenerChoices'
 import TextLoop from 'react-text-loop'
 import { ReactComponent as WhiteArrowIcon } from '../assets/RecycleArrowsWhite.svg'
+import { config } from '../Constants'
 
-let appBaseURL = 'http://localhost:5000'
+const url = config.url.baseUrl
 
-// for now
-if (process.env.NODE_ENV !== 'developement') {
-  //appBaseURL = 'http://localhost:5000'
-}
-
-console.log(appBaseURL)
 
 const RecycleSymbols = (props) => {
 
@@ -33,7 +28,7 @@ const RecycleSymbols = (props) => {
   const recShowModalRef = useRef()
 
     useEffect(()=> {
-      axios.get(appBaseURL + '/plastics')
+      axios.get(url + '/plastics')
         .then(res => {
           setRecTypeData(res.data)
         })
@@ -42,7 +37,7 @@ const RecycleSymbols = (props) => {
     }, [])
 
     const getById = (id) => {
-      axios.get(appBaseURL + '/plastics' + '/' + id)
+      axios.get(url + '/plastics' + '/' + id)
         .then(res => {
           setSingleRecType(res.data)
         })

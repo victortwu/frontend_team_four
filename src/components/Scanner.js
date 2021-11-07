@@ -1,5 +1,15 @@
 import React, { useRef } from 'react'
+import { config } from '../Constants'
 import axios from 'axios'
+
+const url = config.url.baseUrl
+
+//let appBaseURL = 'http://localhost:5000'
+// let appBaseURL = 'https://greenscan-api.herokuapp.com'
+// // for now
+// if (process.env.NODE_ENV !== 'developement') {
+//   //appBaseURL = 'http://localhost:5000'
+// }
 
 const Scanner = props => {
 
@@ -7,7 +17,7 @@ const Scanner = props => {
 
     const getProduct = async(code) => {
 
-      let res  = await axios.get(`http://localhost:5000/upc/${code}`)
+      let res  = await axios.get(`${url}/upc/${code}`)
         .then(res => {
           console.log(res.data.message)
           console.log(res.data.items[0])
@@ -34,36 +44,36 @@ const Scanner = props => {
       try {
 
         // fake data here for testing flow of app w/o wasting api calls
-        const fakeScanData = {
-          Successfull: true,
-          BarcodeType: 'upc',
-          RawText: '012000171741',
-          //RawText: '012'
-        }
+
+        // const fakeScanData = {
+        //   Successfull: true,
+        //   BarcodeType: 'upc',
+        //   RawText: '012000171741',
+        // }
 
 
   // uncomment below to make actual api calls
 
-        // let req = await axios.request({
-        //   method: 'POST',
-        //   url: 'https://api.cloudmersive.com/barcode/scan/image',
-        //   headers: {
-        //     'Content-Type': 'multipart/form-data',
-        //     "Apikey": process.env.REACT_APP_BCODEAPIKEY
-        //   },
-        //   data: formData
-        // })
-        //
-        // console.log(req.data)
-        //
-        //
-        // getProduct(req.data.RawText)
-        // props.setBarcodeData(req.data)
-        // props.setIsLoading(false)
+        let req = await axios.request({
+          method: 'POST',
+          url: 'https://api.cloudmersive.com/barcode/scan/image',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            "Apikey": process.env.REACT_APP_BCODEAPIKEY
+          },
+          data: formData
+        })
 
-        getProduct(fakeScanData.RawText)
-        props.setBarcodeData(fakeScanData)
+        console.log(req.data)
+
+
+        getProduct(req.data.RawText)
+        props.setBarcodeData(req.data)
         props.setIsLoading(false)
+
+        // getProduct(fakeScanData.RawText)
+        // props.setBarcodeData(fakeScanData)
+        // props.setIsLoading(false)
       }
       catch(error) {
               console.log(error);
