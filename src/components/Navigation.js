@@ -33,6 +33,7 @@ const Navigation =(props)=> {
                   onClick={()=>{
                         toggleDropDown()
                         spinHamburger()
+                        props.closeRecMenu()
                       }}id='navLink' to='/map'
                           >
                     <span className='text-dkG'>Map</span>

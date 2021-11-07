@@ -77,7 +77,7 @@ const RecycleSymbols = (props) => {
 
             <div onClick={()=> {
               slideMenuDown()
-              props.closeRecMenu(950)
+              props.closeRecMenu(1000)
 
             }} id='xBtn'>
               <XButton/>
@@ -196,10 +196,10 @@ const RecycleSymbols = (props) => {
 
 
 
-                    <Link to='/map'>
+                    <Link onClick={()=> {props.closeRecMenu()}} to='/map'>
                       <div className='linkToMapBtn'/>
                     </Link>
-
+                    
                 </div>
 
               </div>
