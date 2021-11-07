@@ -73,13 +73,9 @@ const RecycleSymbols = (props) => {
 
   return(
       <>
-        <div ref={recMenuRef} className='gridWrapper'>
+        <div ref={recMenuRef} className='gridWrapper shadow-2xl'>
 
-          <span id='lineOne'>Please select your</span>
-          <span id='lineTwo'>recycle code</span>
-
-
-            <div onClick={()=> {  // refactor these functions like a nav drop down - issue #16
+            <div onClick={()=> {
               slideMenuDown()
               props.closeRecMenu(950)
 
@@ -87,6 +83,7 @@ const RecycleSymbols = (props) => {
               <XButton/>
             </div>
 
+            <h1 className='recMenuTitle'>SELECT YOUR RECYCLE CODE</h1>
 
           <div className='recycleTypesCnt'>
 
@@ -117,7 +114,7 @@ const RecycleSymbols = (props) => {
         {
           showRecTypeModal ?
 
-          <div ref={recShowModalRef} className='showModalWrapper'>
+          <div ref={recShowModalRef} className='showModalWrapper shadow-2xl'>
 
           <div className='backArrow'
                 style={{position: 'absolute',

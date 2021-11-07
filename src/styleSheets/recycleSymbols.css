@@ -5,32 +5,26 @@
   position: absolute;
   left: 1rem;
   right: 1rem;
-  bottom: -6rem;
-  height: 95%;
+  top: 2rem;
+  height: 36rem;
   border-radius: 2rem;
   animation: slideUp2 1s;
 }
 
-#lineOne, #lineTwo, #xBtn {
+.recMenuTitle {
   position: absolute;
+  top: 3rem;
+  z-index: 1;
+  left: 2.5rem;
+  right: 2.5rem;
   color: var(--darkGr);
 }
 
-#lineOne, #lineTwo {
-  left: 3rem;
-}
-
-#lineOne {
-  top: .8rem;
-}
-
-#lineTwo {
-  top: 2rem;
-}
-
 #xBtn {
+  position: absolute;
+  color: var(--darkGr);
   top: .8rem;
-  right: 3rem;
+  left: .8rem;
 }
 
 .recycleTypesCnt {
@@ -105,6 +99,7 @@
   bottom: -15rem;
   height: 130%;
   border-radius: 2rem;
+  z-index: 2;
   animation: slideUp2 1s;
 }
 
