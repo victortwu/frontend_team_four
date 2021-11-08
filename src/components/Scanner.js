@@ -40,11 +40,11 @@ const Scanner = props => {
 
         // fake data here for testing flow of app w/o wasting api calls
 
-        const fakeScanData = {
-          Successfull: true,
-          BarcodeType: 'upc',
-          RawText: '012000171741',
-        }
+        // const fakeScanData = {
+        //   Successfull: true,
+        //   BarcodeType: 'upc',
+        //   RawText: '012000171741',
+        // }
 
 
   // uncomment below to make actual api calls
@@ -63,7 +63,7 @@ const Scanner = props => {
 
 
         getProduct(req.data.RawText, req.data)
-      
+
         props.setIsLoading(false)
 
         //getProduct(fakeScanData.RawText, fakeScanData)
