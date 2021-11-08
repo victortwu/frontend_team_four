@@ -14,7 +14,7 @@ const Scanner = props => {
 
       let res  = await axios.get(`${url}/upc/${code}`)
         .then(res => {
-
+          console.log(res.data)
           // console.log(res.data.result[code])
           props.setProductData(res.data.items)
           props.setBarcodeData(obj)
@@ -66,9 +66,9 @@ const Scanner = props => {
 
         props.setIsLoading(false)
 
-        //getProduct(fakeScanData.RawText, fakeScanData)
-
-        //props.setIsLoading(false)
+        // getProduct(fakeScanData.RawText, fakeScanData)
+        //
+        // props.setIsLoading(false)
       }
       catch(error) {
               console.log(error);

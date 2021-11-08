@@ -130,6 +130,7 @@ const RecycleSymbols = (props) => {
                   <div className='headerIconDiv'><WhiteArrowIcon/></div>
           </div>
 
+
             <div className='infoAndBtnContainer'>
               <div className='infoBox'>
 
@@ -200,10 +201,18 @@ const RecycleSymbols = (props) => {
 
               </div>
 
-            </div>
-                <div style={{height: '90%', display: 'flex', flexDirection: 'column-reverse'}}>
-                  <GreenerChoices/>
-                </div>
+
+              </div>
+
+
+              <div className='grnChContainer' style={
+                infoBoxExtended ? {opacity: '.7'} : {opacity: '1'}
+                }>
+                <GreenerChoices/>
+              </div>
+
+
+
           </div> : ''
         }
 
@@ -212,3 +221,4 @@ const RecycleSymbols = (props) => {
 }
 
 export default RecycleSymbols
+//style={{height: '90%', display: 'flex', flexDirection: 'column-reverse'}}

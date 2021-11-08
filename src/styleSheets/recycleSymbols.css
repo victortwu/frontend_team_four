@@ -95,11 +95,14 @@
 .showModalWrapper {
   background-color: var(--mediumGr);
   position: absolute;
-  left: 1rem;
-  right: 1rem;
+
+
+  top: 0;
+  left: 0;
+  right: 0;
   bottom: -15rem;
-  height: 130%;
-  border-radius: 2rem;
+  height: 160%;
+
   z-index: 2;
   animation: slideUp2 1s;
 }
@@ -162,7 +165,10 @@
 
 }
 
+
+
 .infoAndBtnContainer {
+
   position: absolute;
   width: 100%;
   height: 45%;
@@ -210,6 +216,13 @@
   width: 100%;
   height: 4rem;
   border-radius: .5rem;
+}
+
+.grnChContainer {
+  position: sticky;
+
+  top: 90%;
+  z-index: -1;
 }
 
 

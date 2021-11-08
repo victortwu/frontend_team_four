@@ -93,7 +93,7 @@ console.log(productData)
 
             <Route exact path='/test'>
                 <div className='mainWrapper'>
-                  <ProductPage/>
+                  <ProductPage productData={productData} barcodeData={barcodeData}/>
 
                 </div>
             </Route>
