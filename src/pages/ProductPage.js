@@ -34,15 +34,19 @@ const ProductPage = props => {
                       </div>}
               </div>
 
-              <div className={style.box2}>
-                  {(props.barcodeData.Successfull || props.productData !== []) ? <div>
-                                                      <h2>Number 1  *  PETE</h2>
-                                                      <span style={{fontSize: '.8rem', fontStyle: 'italic'}}>(Polyethylene terephthalate)</span>
-                                                    </div>
-                                                    : <h2 style={{color: 'red'}}>
-                                                            Could not read scanned image.
-                                                      </h2>}
-              </div>
+                {props.isLoading ? <div className={style.box2}>| | |</div> : <div className={style.box2}>
+
+                      {(props.barcodeData.Successfull || props.productData !== []) ?
+
+                                                        <div>
+                                                          <h2>Number 1  *  PETE</h2>
+                                                          <span style={{fontSize: '.8rem', fontStyle: 'italic'}}>(Polyethylene terephthalate)</span>
+                                                        </div>
+
+                                                        : <h2 style={{color: 'red'}}>
+                                                                Could not read scanned image.
+                                                          </h2>}
+                </div>}
 
               <div className={style.box3}>
                   <Link to='/map'><div className={style.mapBtn}/></Link>
