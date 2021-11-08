@@ -4,25 +4,20 @@ import axios from 'axios'
 
 const url = config.url.baseUrl
 
-//let appBaseURL = 'http://localhost:5000'
-// let appBaseURL = 'https://greenscan-api.herokuapp.com'
-// // for now
-// if (process.env.NODE_ENV !== 'developement') {
-//   //appBaseURL = 'http://localhost:5000'
-// }
+
 
 const Scanner = props => {
 
   const webCamRef = useRef(null)
 
-    const getProduct = async(code) => {
+    const getProduct = async(code, obj) => {
 
       let res  = await axios.get(`${url}/upc/${code}`)
         .then(res => {
-          console.log(res.data.message)
-          console.log(res.data.items[0])
+
           // console.log(res.data.result[code])
-          props.setProductData(res.data.items[0])
+          props.setProductData(res.data.items)
+          props.setBarcodeData(obj)
         })
         .catch(err => {console.error(err.message)})
       }
@@ -45,11 +40,11 @@ const Scanner = props => {
 
         // fake data here for testing flow of app w/o wasting api calls
 
-        // const fakeScanData = {
-        //   Successfull: true,
-        //   BarcodeType: 'upc',
-        //   RawText: '012000171741',
-        // }
+        const fakeScanData = {
+          Successfull: true,
+          BarcodeType: 'upc',
+          RawText: '012000171741',
+        }
 
 
   // uncomment below to make actual api calls
@@ -67,13 +62,13 @@ const Scanner = props => {
         console.log(req.data)
 
 
-        getProduct(req.data.RawText)
-        props.setBarcodeData(req.data)
+        getProduct(req.data.RawText, req.data)
+      
         props.setIsLoading(false)
 
-        // getProduct(fakeScanData.RawText)
-        // props.setBarcodeData(fakeScanData)
-        // props.setIsLoading(false)
+        //getProduct(fakeScanData.RawText, fakeScanData)
+
+        //props.setIsLoading(false)
       }
       catch(error) {
               console.log(error);

@@ -17,7 +17,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [barcodeData, setBarcodeData] = useState({})
-  const [productData, setProductData] = useState({})
+  const [productData, setProductData] = useState([])
   const [showProductPage, setShowProductPage] = useState(false)
 
   const [loadHomePage, setLoadHomePage] = useState(false)
@@ -51,7 +51,7 @@ const greenHill = {
   animationDelay: '1s',
 }
 
-
+console.log(productData)
   return (
     <BrowserRouter>
 
