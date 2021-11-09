@@ -1,38 +1,25 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { ReactComponent as DropArrow } from '../assets/Drop-Down Arrow.svg'
 import TextLoop from 'react-text-loop'
 import style from '../cssModules/recTypeInfoBox.module.css'
 
 const RecTypeInfoBox = props => {
 
-
-  // props --> const [infoBoxExtended, setInfoBoxExtended] = useState(false)
-
   const extentionRef = useRef()
   const arrowRef = useRef()
 
 
-
-
     const extendInfoBox = () => {
       extentionRef.current.style.animation = 'extend .5s forwards'
-
-
     }
 
     const retractInfoBox = () => {
       extentionRef.current.style.animation = 'retract .5s forwards'
-
-
     }
 
 
 
   return(
-
-
-
-
 
         <div className={style.mainContainer}>
           <div className={style.container}>
@@ -92,21 +79,12 @@ const RecTypeInfoBox = props => {
                                         <DropArrow/>
                                       </div> }
 
+                          </div>
 
-
-
-
-
-            </div>
+                  </div>
 
         </div>
-
-
-    </div>
-
-
-
-  )
+      )
 }
 
 export default RecTypeInfoBox
