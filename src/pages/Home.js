@@ -41,7 +41,7 @@ const Home = (props) => {
           setFactoids(res.data)
         })
         .catch(err=> {console.error(err.message)})
-        setTimeout(() => {checkFactoids()} , 2500)
+        setTimeout(() => {checkFactoids()} , 2000)
 
     }, [])
 
@@ -64,7 +64,7 @@ const Home = (props) => {
 
                 <div className='mx-6'>
                     <div className='factiodDiv'>
-                    {factoidsLoaded ? <TextLoop interval={7000} children={factoidMap} /> : ''}
+                      {factoidsLoaded ? <TextLoop interval={7000} children={factoidMap} /> : ''}
                     </div>
 
                     <div id='scanBtnLink' >

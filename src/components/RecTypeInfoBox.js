@@ -1,12 +1,31 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { ReactComponent as DropArrow } from '../assets/Drop-Down Arrow.svg'
 import TextLoop from 'react-text-loop'
 import style from '../cssModules/recTypeInfoBox.module.css'
 
 const RecTypeInfoBox = props => {
 
+  const [array1Loaded, setArray1Loaded] = useState(false)
+  const [array2Loaded, setArray2Loaded] = useState(false)
+
   const extentionRef = useRef()
   const arrowRef = useRef()
+
+    const checkArray1 = () => {
+      if ( props.singleRecType.productExamples === [] ) {
+        setArray1Loaded(false)
+      } else {
+        setArray1Loaded(true)
+      }
+    }
+
+    const checkArray2 = () => {
+      if ( props.singleRecType.recycledExamples === [] ) {
+        setArray2Loaded(false)
+      } else {
+        setArray2Loaded(true)
+      }
+    }
 
 
     const extendInfoBox = () => {
@@ -17,6 +36,12 @@ const RecTypeInfoBox = props => {
       extentionRef.current.style.animation = 'retract .5s forwards'
     }
 
+  useEffect(()=> {
+    setTimeout(()=> {
+      checkArray1()
+      checkArray2()
+    }, 2000)
+  }, [])
 
 
   return(
@@ -31,11 +56,15 @@ const RecTypeInfoBox = props => {
               <tbody>
                 <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
                   <td style={{fontWeight: '500', paddingBottom: '1rem', paddingLeft: '.5rem'}}>IS USED IN...</td>
-                  <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}><TextLoop interval={1000} children={props.singleRecType.productExamples}/></td>
+                  <td style={{paddingBottom: '1rem', paddingLeft: '1rem'}}>
+                      {array1Loaded ? <TextLoop interval={2000} children={props.singleRecType.productExamples}/> : ''}
+                  </td>
                 </tr>
                 <tr style={{fontSize: '.8rem', borderBottom: 'solid 1px var(--mediumGr)'}}>
                   <td style={{fontWeight: '500', paddingTop: '1rem', paddingLeft: '.5rem'}}>IS RECYCLED INTO:</td>
-                  <td style={{padding: '1rem'}}><TextLoop interval={1500} children={props.singleRecType.recycledExamples}/></td>
+                  <td style={{padding: '1rem'}}>
+                      {array2Loaded ? <TextLoop interval={2500} children={props.singleRecType.recycledExamples}/> : ''}
+                  </td>
                 </tr>
               </tbody>
             </table>
