@@ -25,7 +25,7 @@ const MapPage = () => {
     const getDetails = (query) => {
       axios.get(`${url}/details/${query}`)
         .then(res => {
-          
+
           setRecCenterData(res.data.result)
         })
         .catch(err => { console.error(err.message) })
@@ -73,7 +73,7 @@ const MapPage = () => {
     getLocations()
   }, [])
 
-
+console.log(recCenterData)
   return(
     <div className={style.container}>
 
@@ -112,7 +112,9 @@ const MapPage = () => {
         {  recCenters.map((loc, i)=> {
             return(
               <div className={`${style.card} shadow-md transition duration-500 ease-in-out`} key={i + loc.location_id}>
-                <h1>{recCenterData[loc.location_id]?.description}</h1>
+                <a href={recCenterData[loc.location_id]?.url} target='none' style={{textDecoration: 'underline'}}>
+                  <h1>{recCenterData[loc.location_id]?.description}</h1>
+                </a>
                 <span>{recCenterData[loc.location_id]?.address}</span>
                 <div className={style.cardSymbols}>
                   <AcceptsIcon/>
