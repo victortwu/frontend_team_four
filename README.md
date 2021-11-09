@@ -43,9 +43,10 @@ NODE.JS :
     Javascript runtime environment that makes this all possible.  And it's the "N" in MERN stack.
 
 
-    API resources consumed:
+API resources consumed:
+
       api.earth911.com
       api.upcitemdb.com
       api.cloudmersive.com
 
-    Deployed on Vercel and Heroku
+Deployed on Vercel and Heroku
